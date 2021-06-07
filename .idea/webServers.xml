@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9d94899f-03c0-4651-9b50-c026a478ae1e" name="php_basic_server" url="http://192.168.56.1">
+        <fileTransfer rootFolder="/usr/local/apache2.4/htdocs" accessType="SFTP" host="192.168.56.1" port="22" sshConfigId="794ab8fd-47a6-4639-a5e3-0cb906b074a6" sshConfig="root@192.168.56.1:22:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
