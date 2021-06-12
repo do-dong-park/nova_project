@@ -13,21 +13,21 @@
 <body>
 <nav class="navbar">
     <ul class="navbar_menu">
-        <li><a href="">카페 정보</a></li>
-        <li><a href="">메뉴</a></li>
+        <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
+        <li><a href="http://192.168.56.1/front_end/html/menu/menu_list.php">메뉴</a></li>
         <li><a href="">Q&A</a></li>
         <li><a href="">공지사항</a></li>
     </ul>
 
     <div class="navbar_logo">
         <i class="fas fa-coffee"></i>
-        <a href="">카페 토성</a>
+        <a href="http://192.168.56.1/front_end/html/cafe/main_page.php">카페 토성</a>
     </div>
 
     <ul class="navbar_icons">
         <li><i class="fab fa-instagram"></i></li>
         <li><i class="fas fa-share-alt-square"></i></li>
-        <li><i class="fas fa-sign-in-alt"></i></li>
+        <li><a href="http://192.168.56.1/front_end/html/login/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
     </ul>
 
     <a href="#" class="navbar_toggleBtn">

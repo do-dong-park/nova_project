@@ -63,13 +63,6 @@ require_once "../../common/nav_bar/my-navbar-include.php"
         </tr>
 
         <tr>
-            <th scope="row">닉네임 변경</th>
-            <td>
-                <input type="text" class="form-control mf-nickname" placeholder="새 닉네임">
-            </td>
-        </tr>
-
-        <tr>
             <th scope="row">ID 변경</th>
             <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
             <td>
@@ -83,32 +76,46 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <td>
                 <table class="table modify-my-pw-table">
                     <tr>
-<!--                        <th>-->
-<!--                            현재 비밀번호-->
-<!--                        </th>-->
+                        <!--                        <th>-->
+                        <!--                            현재 비밀번호-->
+                        <!--                        </th>-->
                         <td>
                             <input type="password" class="form-control current-pw" placeholder="현재 비밀번호">
                             <button type="button" class="btn btn-outline-secondary btn-sm">비밀번호 변경</button>
                         </td>
                     </tr>
                     <tr>
-<!--                        <th>-->
-<!--                            새 비밀번호-->
-<!--                        </th>-->
+                        <!--                        <th>-->
+                        <!--                            새 비밀번호-->
+                        <!--                        </th>-->
                         <td>
                             <input type="password" class="form-control new-pw" placeholder="새 비밀번호">
                         </td>
                     </tr>
                     <tr>
-<!--                        <th>-->
-<!--                            비밀번호 다시 입력-->
-<!--                        </th>-->
+                        <!--                        <th>-->
+                        <!--                            비밀번호 다시 입력-->
+                        <!--                        </th>-->
                         <td>
                             <input type="email" class="form-control new-pw-confirm" placeholder="비밀번호 다시 입력">
                         </td>
                     </tr>
 
                 </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row">이름 변경</th>
+            <td>
+                <input type="text" class="form-control mf-name" placeholder="이름">
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row">닉네임 변경</th>
+            <td>
+                <input type="text" class="form-control mf-nickname" placeholder="새 닉네임">
             </td>
         </tr>
 

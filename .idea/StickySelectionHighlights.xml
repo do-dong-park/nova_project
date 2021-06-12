@@ -143,6 +143,16 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/cafe/cafe_info.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/cafe/main_page.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/check-my-profile.php">
           <value>
             <PaintGroupHighlightMap />
@@ -184,6 +194,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/menu/menu_list.html">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/menu/menu_list.php">
           <value>
             <PaintGroupHighlightMap />
           </value>

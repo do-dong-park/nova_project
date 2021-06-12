@@ -47,9 +47,9 @@
             </div>
 
             <ul class="another_option">
-                <li><a href="">회원가입</a></li>
-                <li><a href="">ID찾기</a></li>
-                <li><a href="">PW찾기</a></li>
+                <li><a href="http://192.168.56.1/front_end/html/login/signup.php">회원가입</a></li>
+                <li><a href="http://192.168.56.1/front_end/html/login/find_account.php#">ID찾기</a></li>
+                <li><a href="http://192.168.56.1/front_end/html/login/find_account.php#">PW찾기</a></li>
             </ul>
         </div>
 

@@ -56,11 +56,6 @@ require_once "../../common/nav_bar/my-navbar-include.php"
         </tr>
 
         <tr>
-            <th scope="row">닉네임</th>
-            <td>박동규</td>
-        </tr>
-
-        <tr>
             <th scope="row">ID</th>
             <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
             <td><?php echo $_POST["id"]; ?></td>
@@ -70,6 +65,16 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <th scope="row">PW</th>
             <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
             <td><?php echo $_POST["pw"]; ?></td>
+        </tr>
+
+        <tr>
+            <th scope="row">이름</th>
+            <td>박동규</td>
+        </tr>
+
+        <tr>
+            <th scope="row">닉네임</th>
+            <td>박동규</td>
         </tr>
 
         <tr>
