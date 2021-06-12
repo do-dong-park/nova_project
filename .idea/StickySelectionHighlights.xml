@@ -53,7 +53,37 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/bootstrap&amp;icon&amp;font.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/nav_bar/my-nav-bar-bootstrap.js">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/nav_bar/my-navbar-include.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/common/nav_bar/my_nav_bar.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/cafe/main_frame.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/login/check-my-profile.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/login/modify-my-profile.css">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -84,6 +114,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/login.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/modify-my-profile.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
