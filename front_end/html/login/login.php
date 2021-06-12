@@ -22,18 +22,18 @@
 
     <!-- Login input -->
     <!--이 구역 내에 있는 것들을 내 정보 보기라는 페이지로 POST 방식으로 보낼것입니다.-->
-    <form action="check-my-profile.php" method="post">
+    <form action="login_check.php" method="post">
 
         <div class="login_input">
             <div class="login_id">
                 <!--input id에 대해 label을 적용합니다.-->
                 <label for="id_input" class="form-label">ID</label>
-                <input type="text" class="form-control" name="id" id="id_input" placeholder="아이디">
+                <input type="text" class="form-control" name="login_id" id="id_input" placeholder="아이디">
             </div>
 
             <div class="login_password">
                 <label for="pw_input" class="form-label">Password</label>
-                <input type="password" class="form-control" name="pw" id="pw_input" placeholder="비밀번호">
+                <input type="password" class="form-control" name="login_pw" id="pw_input" placeholder="비밀번호">
             </div>
         </div>
 
@@ -54,7 +54,7 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary" type="submit">로그인</button>
+            <input class="btn btn-primary" type="submit" value="로그인">
         </div>
     </form>
 

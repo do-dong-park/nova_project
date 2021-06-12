@@ -25,9 +25,3 @@ if( $row['id']!=$_POST["userid"] || $row['pass']!=$_POST["userpw"] ){
 
 
 ?>
-
-
-
-
-
-<?php

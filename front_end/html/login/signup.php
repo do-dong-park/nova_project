@@ -20,68 +20,69 @@
         <Strong>카페 토성</Strong>
     </div>
 
-    <!-- signup input -->
-    <div class="signup_input">
-        <div class="signup_id">
-            <!--input id에 대해 label을 적용합니다.-->
-            <label for="id_input" class="form-label">ID</label>
-            <input type="text" class="form-control" id="id_input" placeholder="아이디">
+    <form action="register-member.php" method="post" class="signup-form">
+        <!-- signup input -->
+        <div class="signup_input">
+            <div class="signup_id">
+                <!--input id에 대해 label을 적용합니다.-->
+                <label for="id_input" class="form-label">ID</label>
+                <input type="text" class="form-control" name="id" id="id_input" placeholder="아이디">
+            </div>
+
+            <div class="signup_password">
+                <label for="pw_input" class="form-label">Password</label>
+                <input type="password" class="form-control" name="pw" id="pw_input" placeholder="비밀번호">
+            </div>
+
+            <div class="signup_confirm_password">
+                <label for="pw_conf_input" class="form-label">Password Confirm</label>
+                <input type="password" class="form-control" id="pw_conf_input" placeholder="비밀번호 확인">
+            </div>
+
+            <div class="signup_nickname">
+                <!--input id에 대해 label을 적용합니다.-->
+                <label for="nickname_input" class="form-label">Nick Name</label>
+                <input type="text" class="form-control" name="nickname" id="nickname_input" placeholder="닉네임">
+            </div>
+
+
+            <div class="signup_email">
+                <!--input id에 대해 label을 적용합니다.-->
+                <label for="email_input" class="form-label">Email address</label>
+                <input type="email" class="form-control" name="email" id="email_input" placeholder="name@example.com">
+            </div>
+
         </div>
 
-        <div class="signup_password">
-            <label for="pw_input" class="form-label">Password</label>
-            <input type="password" class="form-control" id="pw_input" placeholder="비밀번호">
+        <div class="signup_option">
+            <div class="auto_option">
+                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio1">
+                <label class="form-check-label" for="auto_option_radio1">
+                    약관 전체 동의
+                </label>
+            </div>
+
+            <div class="auto_option">
+                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio2">
+                <label class="form-check-label" for="auto_option_radio2">
+                    개인정보 수집 이용동의(필수)
+                </label>
+                <button type="button" class="link">약관보기</button>
+            </div>
+
+            <div class="auto_option">
+                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio3">
+                <label class="form-check-label" for="auto_option_radio3">
+                    카페 토성 이용약관(필수)
+                </label>
+                <button type="button" class="link">약관보기</button>
+            </div>
         </div>
 
-        <div class="signup_confirm_password">
-            <label for="pw_conf_input" class="form-label">Password Confirm</label>
-            <input type="password" class="form-control" id="pw_conf_input" placeholder="비밀번호 확인">
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <input class="btn btn-primary" type="submit" value="회원가입">
         </div>
-
-        <div class="signup_nickname">
-            <!--input id에 대해 label을 적용합니다.-->
-            <label for="nickname_input" class="form-label">Nick Name</label>
-            <input type="text" class="form-control" id="nickname_input" placeholder="닉네임">
-        </div>
-
-
-
-        <div class="signup_email">
-            <!--input id에 대해 label을 적용합니다.-->
-            <label for="email_input" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email_input" placeholder="name@example.com">
-        </div>
-
-    </div>
-
-    <div class="signup_option">
-        <div class="auto_option">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio1">
-            <label class="form-check-label" for="auto_option_radio1">
-                약관 전체 동의
-            </label>
-        </div>
-
-        <div class="auto_option">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio2">
-            <label class="form-check-label" for="auto_option_radio2">
-                개인정보 수집 이용동의(필수)
-            </label>
-            <button type="button" class="link">약관보기</button>
-        </div>
-
-        <div class="auto_option">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio3">
-            <label class="form-check-label" for="auto_option_radio3">
-                카페 토성 이용약관(필수)
-            </label>
-            <button type="button" class="link">약관보기</button>
-        </div>
-    </div>
-
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary" type="button">회원가입</button>
-    </div>
+    </form>
 
 </section>
 

@@ -8,6 +8,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="/dummy.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/connect_Mysql2.php">
           <value>
             <PaintGroupHighlightMap />
@@ -153,7 +158,17 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/login_check.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/modify-my-profile.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/register-member.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
