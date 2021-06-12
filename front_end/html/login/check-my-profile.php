@@ -50,7 +50,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <td>
 
                 <!--기본 이미지가 들어갈 공간-->
-                <img src="../../img/기타/유저-기본이미지.png" class="my-profile-image" alt="사진이 없습니다." width="50">
+                <img src="../../img/기타/유저-기본이미지.png" class="my-profile-image" alt="사진이 없습니다." width="80">
 
             </td>
         </tr>

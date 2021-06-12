@@ -1,0 +1,91 @@
+.companyname {
+
+    margin-top: 100px;
+    margin-bottom: 50px;
+
+
+}
+.companyname h1{
+    font-style: italic;
+}
+
+.companyname p{
+    color: black;
+}
+
+.header_hero{
+    background-color:#111111 ;
+    color: white;
+
+
+}
+.container-fluid{
+    padding : 60px 50px;
+}
+
+.logo-small {
+    color: #111111;
+    font-size: 50px;
+}
+.footter{
+    margin-top: 30px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #111111;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+.carousel-caption{
+
+    color: black;
+
+
+}
+.menulist{
+    list-style-type: none;
+    margin: 0;
+    padding-left: 40%;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111111;
+}
+
+
