@@ -4,8 +4,10 @@
 $conn = mysqli_connect("127.0.0.1","root",'tpwnd2315!');
 mysqli_select_db($conn ,'php-basic-project');
 
-if ($_POST["id"]== "" || $_POST["pw"]==""){
-    echo '<script> alert("아이디나 패스워드 입력하세요"); history.back(); </script>';
+
+//회원가입 조건 충족 못하면,
+if ($_POST["id"]== "" || $_POST["pw"]=="" || $_POST["name"]=="" || $_POST["email"]==""){
+    echo '<script> alert("필수 정보를 모두 입력해주세요"); history.back(); </script>';
     return ;
 }
 
