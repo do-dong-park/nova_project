@@ -66,7 +66,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <th scope="row">ID 변경</th>
             <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
             <td>
-                <input type="text" class="form-control mf-ID" placeholder="새 아이디">
+                <input type="text" class="form-control mf-ID" placeholder="새 아이디 (6-12자 이내,영문,숫자 사용 가능)">
             </td>
         </tr>
 
@@ -89,7 +89,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                         <!--                            새 비밀번호-->
                         <!--                        </th>-->
                         <td>
-                            <input type="password" class="form-control new-pw" placeholder="새 비밀번호">
+                            <input type="password" class="form-control new-pw" placeholder="새 비밀번호 (8자 이상,영문,숫자 사용 가능)">
                         </td>
                     </tr>
                     <tr>
@@ -115,7 +115,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
         <tr>
             <th scope="row">닉네임 변경</th>
             <td>
-                <input type="text" class="form-control mf-nickname" placeholder="새 닉네임">
+                <input type="text" class="form-control mf-nickname" placeholder="새 닉네임 (6-12자 이내,영문,숫자 사용 가능)">
             </td>
         </tr>
 

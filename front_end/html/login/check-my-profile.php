@@ -23,7 +23,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
     <div class="check-my-profile-title">
         <h1 class="title">내 회원정보 <span>확인</span></h1>
-        <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm">회원 정보 수정</button>
+        <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick = "location.href = 'modify-my-profile.php'">회원 정보 수정</button>
         <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm">회원 탈퇴</button>
     </div>
 
