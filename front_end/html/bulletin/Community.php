@@ -72,7 +72,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <td>제목 2</td>
             <td>작성자 2</td>
             <td>작성일 2</td>
-            <td>답변 상태 2</td>
+            <td>조회수 2</td>
         </tr>
 
         <tr>
@@ -81,7 +81,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <td>제목 3</td>
             <td>작성자 3</td>
             <td>작성일 3</td>
-            <td>답변 상태 3</td>
+            <td>조회수 3</td>
         </tr>
 
         <tr>
@@ -90,7 +90,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <td>제목 4</td>
             <td>작성자 4</td>
             <td>작성일 4</td>
-            <td>답변 상태 4</td>
+            <td>조회수 4</td>
         </tr>
 
         <tr>
@@ -99,7 +99,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <td>제목 5</td>
             <td>작성자 5</td>
             <td>작성일 5</td>
-            <td>답변 상태 5</td>
+            <td>조회수 5</td>
         </tr>
 
         </tbody>

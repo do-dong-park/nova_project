@@ -2,8 +2,8 @@
     <ul class="my-navbar_menu">
         <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
         <li><a href="http://192.168.56.1/front_end/html/menu/menu_list.php">메뉴</a></li>
-        <li><a href="">Q&A</a></li>
-        <li><a href="">공지사항</a></li>
+        <li><a href="http://192.168.56.1/front_end/html/bulletin/Q&A.php">Q&A</a></li>
+        <li><a href="http://192.168.56.1/front_end/html/bulletin/Community.php">공지사항</a></li>
     </ul>
 
     <div class="my-navbar_logo">
@@ -12,7 +12,7 @@
     </div>
 
     <ul class="my-navbar_icons">
-        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="https://www.instagram.com/cafe_tosung/"><i class="fab fa-instagram"></i></a></li>
         <li><a href="#"><i class="fas fa-share-alt-square"></i></a></li>
         <li><a href="http://192.168.56.1/front_end/html/login/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
     </ul>
