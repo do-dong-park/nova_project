@@ -13,6 +13,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/back_end/PHP/connect_member_db.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/connect_Mysql2.php">
           <value>
             <PaintGroupHighlightMap />
@@ -88,6 +93,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/My_Global_Function.js">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/common/bootstrap&amp;icon&amp;font.php">
           <value>
             <PaintGroupHighlightMap />
@@ -104,6 +114,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/common/nav_bar/my_nav_bar.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/nav_bar/nav_bar.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/nav_bar/navbar-nonbootstrap.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -203,7 +223,22 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/cafe/sample.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/check-my-profile.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/checkId.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/check_id_duplicate.php">
           <value>
             <PaintGroupHighlightMap />
           </value>

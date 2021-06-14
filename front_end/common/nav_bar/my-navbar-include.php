@@ -12,7 +12,7 @@
     </div>
 
     <ul class="my-navbar_icons">
-        <li><a href="https://www.instagram.com/cafe_tosung/"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="#" onclick="window.open('https://www.instagram.com/cafe_tosung/')"><i class="fab fa-instagram"></i></a></li>
         <li><a href="#"><i class="fas fa-share-alt-square"></i></a></li>
         <li><a href="http://192.168.56.1/front_end/html/login/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
     </ul>

@@ -14,29 +14,9 @@
 
 <body>
 
-<nav class="navbar">
-    <ul class="navbar_menu">
-        <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
-        <li><a href="http://192.168.56.1/front_end/html/menu/menu_list.php">메뉴</a></li>
-        <li><a href="http://192.168.56.1/front_end/html/bulletin/Q&A.php">Q&A</a></li>
-        <li><a href="http://192.168.56.1/front_end/html/bulletin/Community.php">공지사항</a></li>
-    </ul>
-
-    <div class="navbar_logo">
-        <i class="fas fa-coffee"></i>
-        <a href="http://192.168.56.1/front_end/html/cafe/main_page.php">카페 토성</a>
-    </div>
-
-    <ul class="navbar_icons">
-        <li><a href="https://www.instagram.com/cafe_tosung/"><i class="fab fa-instagram"></i></a></li>
-        <li><i class="fas fa-share-alt-square"></i></li>
-        <li><a href="http://192.168.56.1/front_end/html/login/login.php"><i class="fas fa-sign-in-alt"></i></a></li>
-    </ul>
-
-    <a href="#" class="navbar_toggleBtn">
-        <i class="fas fa-bars"></i>
-    </a>
-</nav>
+<?php
+require_once "../../common/nav_bar/navbar-nonbootstrap.php"
+?>
 
 <section>
     <div class="slideshow-container">
@@ -44,18 +24,18 @@
         <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
             <img src="../../img/카페%20사진/카페사진1.jpg" style="width:100%" alt="카페사진">
-<!--            <div class="text">주간 전경</div>-->
+            <!--            <div class="text">주간 전경</div>-->
         </div>
         <div class="mySlides fade">
             <div class="numbertext">2 / 3</div>
             <img src="../../img/카페%20사진/카페사진2.jpg" style="width:100%" alt="카페사진">
-<!--            <div class="text">카페 조경</div>-->
+            <!--            <div class="text">카페 조경</div>-->
         </div>
 
         <div class="mySlides fade">
             <div class="numbertext">3 / 3</div>
             <img src="../../img/카페%20사진/카페사진4.jpg" style="width:100%" alt="카페사진">
-<!--            <div class="text">야간 전경</div>-->
+            <!--            <div class="text">야간 전경</div>-->
         </div>
 
         <!-- Next and previous buttons -->
@@ -71,6 +51,7 @@
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
+
 </section>
 </body>
 </html>

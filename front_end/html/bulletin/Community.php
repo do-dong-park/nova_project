@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>community 게시판</title>
+    <title>자유 게시판</title>
     <?php
     require_once "../../common/bootstrap&icon&font.php"
     ?>
@@ -22,7 +22,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 <section class="community-section">
 
     <div class="community-main-title">
-        <h1 class="title">게시판</h1>
+        <h1 class="title">자유 게시판</h1>
         <button class="add-post btn btn-outline-secondary btn-sm" onclick = "location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'">글 작성</button>
     </div>
 

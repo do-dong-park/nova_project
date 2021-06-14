@@ -1,8 +1,7 @@
 <!-- 많이쓰는 함수 js파일 (제일 위 <?php ?>영역 밖에 입력 )-->
 <script>
     //4.Post방식으로 데이터 넘겨주기
-    //-함수의 입력값에 배열을 넣어서 배열에 post로 보낼 값(key : value)을 담는다.
-    //함수 예시) post_to_url("/sports_shop/web_page/additempage.php", {'edit': 1,'id':""})
+
     function post_to_url(path, params, method) {
         //1)get, post 설정
         method = method || "post";
@@ -36,28 +35,31 @@
 $conn = mysqli_connect("127.0.0.1", "root", 'tpwnd2315!');
 mysqli_select_db($conn, 'php-basic-project');
 $result = mysqli_query($conn, 'SELECT * FROM `php-basic-project`.member_info_table');
+?>
 
+<!--메인페이지-->
+
+<?php
 
 $id = $_POST["login_id"];
 $pw = $_POST["login_pw"];
 
-$get_info = mysqli_query($conn, "SELECT * FROM `php-basic-project`.member_info_table WHERE id = '".$id."' ");
+$login_result = mysqli_query($conn, "SELECT * FROM `php-basic-project`.member_info_table WHERE id = '".$id."' ");
 
-$row_info = mysqli_fetch_assoc($get_info);
+while ($login_row = mysqli_fetch_assoc($login_result)) {
 
-$login_name = $row_info['name'];
-echo $login_name;
+    echo 'seq : '.$login_row['id'].', name : '.$login_row['pw'].'<br>';
+}
+
 ?>
 
 <script>
-    var login_id = "<?php echo $row_info['id']; ?>";
-    var login_pw = "<?php echo $row_info['pw']; ?>";
-    var login_name = "<?php echo $row_info['name']; ?>";
-    var login_nickname = "<?php echo $row_info['nickname']; ?>";
-    var login_email = "<?php echo $row_info['email']; ?>";
+    var login_id = "<?php echo $id; ?>";
+    var login_pw = "<?php echo $pw; ?>";
 </script>
 
 <?php
+
 if ($_POST["login_id"] == "" || $_POST["login_pw"] == "") {
     echo '<script> alert("아이디나 패스워드 입력하세요"); history.back(); </script>';
     return;
@@ -65,13 +67,11 @@ if ($_POST["login_id"] == "" || $_POST["login_pw"] == "") {
 while ($row = mysqli_fetch_assoc($result)) {
 
     if ($row['id'] == $_POST["login_id"] && $row['pw'] == $_POST["login_pw"]) {
-        echo '<script> alert("로그인에 성공하였습니다."); var test = {id: login_id, pw: login_pw, name: login_name, nickname: login_nickname, email: login_email, logined: "true"}; post_to_url("http://192.168.56.1/front_end/html/cafe/main_page.php",test,"post"); </script>';
+        echo '<script> alert("로그인에 성공하였습니다."); var test = {id: login_id, pw: login_pw, name: , nickname: "보노보노", email: "bonobono@google.com", logined: "true"}; post_to_url("http://192.168.56.1/front_end/html/cafe/main_page.php",test,"post"); </script>';
     }
 }
-
 if ($row['id'] != $_POST["login_id"] || $row['pw'] != $_POST["login_pw"]) {
     echo '<script> alert("아이디, 비밀번호를 확인해주세요."); history.back(); </script>';
 
 }
 ?>
-
