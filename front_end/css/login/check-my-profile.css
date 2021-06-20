@@ -60,6 +60,10 @@ button {
     display: inline-block;
 }
 
+.check-my-profile-buttons{
+    float: right;
+}
+
 .my-profile-image {
     display: inline-block;
 }

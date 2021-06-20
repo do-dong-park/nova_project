@@ -22,16 +22,21 @@
     padding: 0;
     margin: 0;
 }
+html {
+    height: 100%;
+}
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
+    height: 100%;
 
 }
 
-.QnA-section {
+.QnA-modify-section {
+    /*height: 100vh;*/
+    width: 60%;
     height: 100%;
-    width: 80%;
 
     /*section을 가운데 정렬합니다.*/
     margin: 0 auto;
@@ -42,40 +47,43 @@ body {
     /*flex container요소 중 justify-content는 주 축의 정렬방법을 설정합니다. align-items는 교차 축에서 item의 정렬방법을 설정합니다*/
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /*justify-content: center;*/
     /*align-items: center;*/
 }
 
-.QnA-main-title {
-    margin-top: 30px;
-    padding: 15px;
-    /*border-bottom: solid 3px black;*/
+.QnA-modify-main-title {
+    /*margin-left: 30px;*/
+    padding-bottom: 15px;
+    border-bottom: solid 2px black;
 }
 
-.QnA-main-title>h1 {
-    margin-right: 30px;
+.QnA-modify-main-title .title{
     display: inline-block;
 }
 
-.QnA-main-title button {
+.QnA-modify-main-title button {
     float: right;
-    margin-right: 30px;
+
+}
+
+.QnA-input-area {
     margin-top: 10px;
-    margin-bottom: 10px;
+    height: 100%;
 }
 
-.QnA-table {
-    text-align: center;
+.QnA-input-description {
     margin-top: 10px;
+    /*height: 100%;*/
 }
 
-.QnA-table-body a {
-    text-decoration: none;
-    color: black;
+textarea{
+    width:500px;
+    height:100px;
+    resize:none;/* 크기고정 */
+    /*   resize: horizontal; // 가로크기만 조절가능
+        resize: vertical;  세로크기만 조절가능  */
 }
 
-.pagination {
-    justify-content: center;
+.ck-editor__editable {
+    min-height: 400px;
 }
-
-.re_ct {color:red;}

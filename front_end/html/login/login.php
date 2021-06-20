@@ -17,7 +17,7 @@
 <section class="login">
     <!--로그인 로고-->
     <div class="login_logo">
-        <Strong>카페 토성</Strong>
+        <Strong><a class="login_logo_link" href="http://192.168.56.1/front_end/html/cafe/main_page.php">카페 토성</a></Strong>
     </div>
 
     <!-- Login input -->

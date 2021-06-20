@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../common/nav_bar/nav_bar.css">
     <link rel="stylesheet" href="../../css/cafe/cafe_info.css">
+    <link rel="stylesheet" href="/front_end/common/footer/common_footer.css">
 
 
 </head>
@@ -16,7 +17,7 @@
         <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
         <li><a href="http://192.168.56.1/front_end/html/menu/menu_list.php">메뉴</a></li>
         <li><a href="http://192.168.56.1/front_end/html/bulletin/Q&A.php">Q&A</a></li>
-        <li><a href="http://192.168.56.1/front_end/html/bulletin/Community.php">공지사항</a></li>
+        <li><a href="http://192.168.56.1/front_end/html/bulletin/Community.php">자유 게시판</a></li>
     </ul>
 
     <div class="navbar_logo">
@@ -51,6 +52,10 @@
     </div>
 
 </section>
+
+<?php
+require_once "../../common/footer/common_footer.php"
+?>
 
 </body>
 

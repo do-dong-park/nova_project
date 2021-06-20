@@ -39,15 +39,34 @@
     </a>
 </nav>
 
+<?php
+$item_type = $_GET['item_name'];
+
+if($item_type == 'beverage') {
+    $item_name = '음료 샘플';
+    $item_content = '음료 설명';
+    $item_img_path = '../../img/음식 사진/음료 이미지 샘플.png';
+
+} elseif ($item_type == 'coffee') {
+    $item_name = '커피 샘플';
+    $item_content = '커피 설명';
+    $item_img_path = '../../img/음식 사진/커피 이미지 샘플.png';
+
+} else {
+    $item_name = '푸드 샘플';
+    $item_content = '푸드 설명';
+    $item_img_path = '../../img/음식 사진/푸드 이미지 샘플.png';
+}
+
+?>
+
 <!--상품 소개 페이지 시작-->
 <section class="menu-info-section">
-
-
     <!--이미지가 들어갈 공간 / 정사각형에 배경은 어두운 녹색~검정색-->
     <!--배경색 혹은 사진 크기 지정할 때 필요한 액자 (div)-->
     <div class="menu-image-frame">
         <div class="menu-img-box">
-            <img src="../../img/음식 사진/커피 이미지 샘플.png" height="300" width="300"/>
+            <img src="<?php echo $item_img_path; ?>" height="300" width="300"/>
             <!--<img src="../../img/커피%20이미지%20샘플.png" class="card-img-top" alt="">-->
         </div>
 
@@ -59,11 +78,11 @@
 
         <!--폰트는 크고 굵게! 설명은 작고 얇게!-->
         <div class="menu-title-frame">
-            <b class="menu-title-text">아메리카노</b>
+            <b class="menu-title-text"><?php echo $item_name; ?></b>
         </div>
 
         <div class="menu-description">
-            <b>이것은 아메리카노입니다.</b>
+            <b><?php echo $item_content; ?></b>
 
         </div>
 

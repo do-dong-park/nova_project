@@ -51,10 +51,12 @@ section {
 section .login_logo {
     padding-bottom: 30px;
     text-align: center;
+    font-size: calc(var(--font-large)*2);
 }
 
-section .login_logo {
-    font-size: calc(var(--font-large)*2);
+.login_logo_link {
+    color : black;
+    text-decoration: none;
 }
 
 .login_input {

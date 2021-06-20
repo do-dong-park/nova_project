@@ -3,7 +3,7 @@
         <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
         <li><a href="http://192.168.56.1/front_end/html/menu/menu_list.php">메뉴</a></li>
         <li><a href="http://192.168.56.1/front_end/html/bulletin/Q&A.php">Q&A</a></li>
-        <li><a href="http://192.168.56.1/front_end/html/bulletin/Community.php">공지사항</a></li>
+        <li><a href="http://192.168.56.1/front_end/html/bulletin/Community.php">자유 게시판</a></li>
     </ul>
 
     <div class="my-navbar_logo">

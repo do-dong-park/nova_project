@@ -51,19 +51,33 @@ body {
     /*align-items: center;*/
 }
 
-.QnA-view-main-title {
-    /*margin-left: 30px;*/
-    padding-bottom: 15px;
+.QnA-view-main-title .title{
+    float: left;
+}
+
+.control_post {
+    margin-bottom: 20px;
+}
+
+.left_btn button {
+    float: left;
+    margin-right: 10px;
+}
+
+.right_btn button {
+    float: right;
+    margin-left: 10px;
+}
+
+.writer_info {
+    float: left;
     border-bottom: solid 2px black;
 }
 
-.QnA-view-main-title .title{
-    display: inline-block;
-}
-
-.QnA-view-main-title button {
+.post_info {
     float: right;
-    margin-left: 30px;
+    display: inline-block;
+    margin-right: 3000px;
 }
 
 .QnA-input-area {
@@ -74,6 +88,13 @@ body {
 .QnA-view-description {
     margin-top: 20px;
     min-height: 400px;
-    border: #111111 solid 1px;
-    border-radius: 5px;
+    /*border-top: #111111 solid 1px;*/
+    border-bottom:  #111111 solid 1px;;
+}
+
+
+
+.QnA-view-comment {
+    border-bottom: 1px black solid ;
+    margin-bottom: 10px;
 }

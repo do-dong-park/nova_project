@@ -19,11 +19,36 @@
 require_once "../../common/nav_bar/my-navbar-include.php"
 ?>
 
+<?php
+//페이지에서 받은 별명으로부터, 회원정보를 추출하여, 표에 값으로 뿌려줌.
+///데이터베이스 연결.////
+$conn = mysqli_connect("127.0.0.1", "root", 'tpwnd2315!');
+mysqli_select_db($conn, 'php-real-project');
+
+//post로 받은 id을 조건으로 table로부터, 해당 열을 추출.
+
+$id = $_POST['id'];
+
+$find_my_info = mysqli_query($conn, "SELECT * FROM php_real_project.member_info WHERE id = '".$id."' ");
+
+$row_my_info = mysqli_fetch_assoc($find_my_info);
+?>
+
 <section class="check-my-profile-section">
+
+    <script>
+        var my_id = "<?php echo $row_my_info['id']; ?>";
+        var my_pw = "<?php echo $row_my_info['pw']; ?>";
+        var my_name = "<?php echo $row_my_info['name']; ?>";
+        var my_nickname = "<?php echo $row_my_info['nickname']; ?>";
+        var my_email = "<?php echo $row_my_info['email']; ?>";
+        var url = "http://192.168.56.1/front_end/html/login/modify-my-profile.php";
+        var show_my_profile = { id: my_id , pw: my_pw , name: my_name, nickname : my_nickname, email: my_email};
+    </script>
 
     <div class="check-my-profile-title">
         <h1 class="title">내 회원정보 <span>확인</span></h1>
-        <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick = "location.href = 'modify-my-profile.php'">회원 정보 수정</button>
+        <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick = post_to_url(url,show_my_profile)>회원 정보 수정</button>
         <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm">회원 탈퇴</button>
     </div>
 
@@ -58,29 +83,29 @@ require_once "../../common/nav_bar/my-navbar-include.php"
         <tr>
             <th scope="row">ID</th>
             <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
-            <td><?php echo $_POST["id"]; ?></td>
+            <td><?php echo $row_my_info['id']; ?></td>
         </tr>
 
         <tr>
             <th scope="row">PW</th>
             <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
-            <td><?php echo $_POST["pw"]; ?></td>
+            <td>********</td>
         </tr>
 
         <tr>
             <th scope="row">이름</th>
-            <td>박동규</td>
+            <td><?php echo $row_my_info['name']; ?></td>
         </tr>
 
         <tr>
             <th scope="row">닉네임</th>
-            <td>박동규</td>
+            <td><?php echo  $row_my_info['nickname']; ?></td>
         </tr>
 
         <tr>
             <th scope="row">이메일</th>
             <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
-            <td>rnlgksclsrn9@naver.com</td>
+            <td><?php echo $row_my_info['email']; ?></td>
         </tr>
 
         </tbody>

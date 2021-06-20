@@ -24,8 +24,6 @@
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
-    scroll :no;
-    overflow: hidden
 }
 
 ul {
@@ -40,7 +38,7 @@ section {
 
     /*section이란 box의 위치가 한가운데*/
     margin: 0 auto;
-    padding-top: 120px;
+    padding-top: 60px;
     padding-bottom: 40px;
 
     display: flex;

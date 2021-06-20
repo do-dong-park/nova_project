@@ -21,17 +21,19 @@
         <Strong>카페 토성</Strong>
     </div>
 
-    <form name="register" action="register-member.php?mode=register" method="post" class="signup-form">
+    <form name="register" action="register-member.php" method="post" class="signup-form">
         <!-- signup input -->
         <div class="signup_input">
             <div class="signup_id">
                 <!--input id에 대해 label을 적용합니다.-->
                 <label for="id_input" class="form-label">ID *</label>
                 <div class="input-group mb-3">
-<!--                    중복확인 눌렀을 때 name= id 변수에 input value가 들어간 채로 중복확인 페이지로 전달-->
+                    <!--                    중복확인 눌렀을 때 name= id 변수에 input value가 들어간 채로 중복확인 페이지로 전달-->
                     <input type="text" class="form-control" name="id" id="id_input"
                            placeholder="아이디 (6-12자 이내,영문,숫자 사용 가능)">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="checkid()">중복 확인</button>
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="checkid()">중복
+                        확인
+                    </button>
                 </div>
             </div>
 
@@ -54,15 +56,28 @@
 
             <div class="signup_nickname">
                 <!--input id에 대해 label을 적용합니다.-->
-                <label for="nickname_input" class="form-label">Nick Name (선택)</label>
-                <input type="text" class="form-control" name="nickname" id="nickname_input"
-                       placeholder="닉네임 (6-12자 이내,영문,숫자 사용 가능)">
+                <label for="nickname_input" class="form-label">Nick Name *</label>
+                <div class="input-group mb-3">
+                    <!--                    중복확인 눌렀을 때 name= id 변수에 input value가 들어간 채로 중복확인 페이지로 전달-->
+                    <input type="text" class="form-control" name="nickname" id="nickname_input"
+                           placeholder="닉네임 (6-12자 이내,영문,숫자 사용 가능)">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="checknick()">중복
+                        확인
+                    </button>
+                </div>
             </div>
 
             <div class="signup_email">
                 <!--input id에 대해 label을 적용합니다.-->
                 <label for="email_input" class="form-label">Email address *</label>
-                <input type="email" class="form-control" name="email" id="email_input" placeholder="name@example.com">
+
+                <div class="input-group mb-3">
+                    <!--                    중복확인 눌렀을 때 name= id 변수에 input value가 들어간 채로 중복확인 페이지로 전달-->
+                    <input type="email" class="form-control" name="email" id="email_input" placeholder="name@example.com">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="checknick()">이메일 인증
+                    </button>
+                </div>
+
             </div>
 
         </div>
@@ -109,16 +124,29 @@
         crossorigin="anonymous"></script>
 
 <script>
-    function checkid(){
+    function checkid() {
         var userid = document.register.id.value;
-        if(userid)
-        {
-            url = "check_id_duplicate.php?userid="+userid;
-            window.open(url,"checkID","width=300,height=100");
-        }else{
+        if (userid) {
+            url = "check_id_duplicate.php?userid=" + userid;
+            window.open(url, "checkID", "width=300,height=100");
+        } else {
             alert("아이디를 입력하세요");
         }
     }
+</script>
+
+<script>
+    function checknick() {
+        var usernick = document.register.nickname.value;
+        if (usernick) {
+            url = "check_nickname_duplicate.php?usernick=" + usernick;
+            window.open(url, "checkNick", "width=300,height=100");
+        } else {
+            alert("닉네임을 입력하세요");
+        }
+    }
+
+
 </script>
 
 </body>

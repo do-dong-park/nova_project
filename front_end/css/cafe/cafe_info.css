@@ -1,12 +1,16 @@
 * {box-sizing:border-box}
 
+html {
+    height: 100%;
+}
+
 body {
     margin: 0px;
     padding: 0px;
+    height: 100%;
 }
 section{
     width: 100%;
-    height: 100%;
     position: relative;
     top: 200px;
 }

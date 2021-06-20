@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../common/nav_bar/my_nav_bar.css">
     <link rel="stylesheet" href="../../css/bulletin/Community.css">
     <script src="../../common/nav_bar/my-nav-bar-bootstrap.js" defer></script>
+    <link rel="stylesheet" href="/front_end/common/footer/common_footer.css">
 </head>
 <body>
 
@@ -107,6 +108,10 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
 
 </section>
+
+<?php
+require_once "../../common/footer/common_footer.php"
+?>
 
 </body>
 </html>

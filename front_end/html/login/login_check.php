@@ -34,27 +34,23 @@
 <?php
 ///////MYSQL 연결///////
 $conn = mysqli_connect("127.0.0.1", "root", 'tpwnd2315!');
-mysqli_select_db($conn, 'php-basic-project');
-$result = mysqli_query($conn, 'SELECT * FROM `php-basic-project`.member_info_table');
+mysqli_select_db($conn, 'php_real_project');
+$result = mysqli_query($conn, 'SELECT * FROM php_real_project.member_info');
 
 
 $id = $_POST["login_id"];
 $pw = $_POST["login_pw"];
 
-$get_info = mysqli_query($conn, "SELECT * FROM `php-basic-project`.member_info_table WHERE id = '".$id."' ");
+$get_info = mysqli_query($conn, "SELECT * FROM php_real_project.member_info WHERE id = '".$id."' ");
 
 $row_info = mysqli_fetch_assoc($get_info);
 
-$login_name = $row_info['name'];
-echo $login_name;
+
 ?>
 
 <script>
-    var login_id = "<?php echo $row_info['id']; ?>";
-    var login_pw = "<?php echo $row_info['pw']; ?>";
-    var login_name = "<?php echo $row_info['name']; ?>";
     var login_nickname = "<?php echo $row_info['nickname']; ?>";
-    var login_email = "<?php echo $row_info['email']; ?>";
+    var login_id = "<?php echo $row_info['id']; ?>";
 </script>
 
 <?php
@@ -65,7 +61,7 @@ if ($_POST["login_id"] == "" || $_POST["login_pw"] == "") {
 while ($row = mysqli_fetch_assoc($result)) {
 
     if ($row['id'] == $_POST["login_id"] && $row['pw'] == $_POST["login_pw"]) {
-        echo '<script> alert("로그인에 성공하였습니다."); var test = {id: login_id, pw: login_pw, name: login_name, nickname: login_nickname, email: login_email, logined: "true"}; post_to_url("http://192.168.56.1/front_end/html/cafe/main_page.php",test,"post"); </script>';
+        echo '<script> alert("로그인에 성공하였습니다."); var login_info = {id: login_id, nickname: login_nickname, logined: "true"}; post_to_url("http://192.168.56.1/front_end/html/cafe/main_page.php",login_info); </script>';
     }
 }
 
@@ -74,4 +70,6 @@ if ($row['id'] != $_POST["login_id"] || $row['pw'] != $_POST["login_pw"]) {
 
 }
 ?>
+
+
 

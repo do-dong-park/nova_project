@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>카페 토성에 오신 것을 환영합니다!</title>
+    <link rel="stylesheet" href="/front_end/css/main_frame.css">
     <link rel="stylesheet" href="/front_end/common/nav_bar/nav_bar.css">
-    <link rel="stylesheet" href="../../css/cafe/main_frame.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/front_end/common/footer/common_footer.css">
     <script src="https://kit.fontawesome.com/1059f71d3d.js" crossorigin="anonymous"></script>
     <script src="../../common/nav_bar/navbar.js" defer></script>
     <script src="../../js/main_frame.js" defer></script>
@@ -46,12 +47,18 @@ require_once "../../common/nav_bar/navbar-nonbootstrap.php"
     </div>
     <br>
     <!-- The dots/circles -->
-    <div style="text-align:center">
+    <div class="fucking_dots" style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 
 </section>
+
+<?php
+require_once "../../common/footer/common_footer.php"
+?>
+
+ <!-- END footer -->
 </body>
 </html>

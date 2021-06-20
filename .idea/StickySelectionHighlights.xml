@@ -3,12 +3,32 @@
   <component name="StickySelectionHighlights">
     <option name="editorHighlights">
       <map>
+        <entry key="/">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="/Dummy.txt">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="/dummy.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/c74ab553-deaa-499c-af1e-3e3263691d00/console_1.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/c74ab553-deaa-499c-af1e-3e3263691d00/console_2.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/back_end/PHP/connect_db.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -103,6 +123,16 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/footer/common_footer.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/footer/common_footer.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/common/nav_bar/my-nav-bar-bootstrap.js">
           <value>
             <PaintGroupHighlightMap />
@@ -128,12 +158,27 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/common/자주 쓸 것 같은 메소드 혹은 구조.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/css/bulletin/Community.css">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/css/bulletin/Q&amp;A.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/bulletin/modify_post.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/bulletin/reply/reply.css">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -163,12 +208,22 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/login/login.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/css/login/modify-my-profile.css">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/css/login/signup.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/main_frame.css">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -199,6 +254,46 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/bulletin/Q&amp;A.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/delete_post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/modify_post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/register_modified_post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/register_post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/reply/delete_reply.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/reply/modify_reply.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/reply/register_reply.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/unlock_post.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -243,6 +338,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/check_nickname_duplicate.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/find_account.php">
           <value>
             <PaintGroupHighlightMap />
@@ -269,6 +369,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/signup.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/update_member_DB.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
