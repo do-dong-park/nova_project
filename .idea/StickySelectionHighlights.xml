@@ -8,6 +8,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="/Dummy.jstd">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="/Dummy.txt">
           <value>
             <PaintGroupHighlightMap />
@@ -18,12 +23,22 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/c74ab553-deaa-499c-af1e-3e3263691d00/console.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/c74ab553-deaa-499c-af1e-3e3263691d00/console_1.sql">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
         <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/c74ab553-deaa-499c-af1e-3e3263691d00/console_2.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/back_end/PHP/bulletin_query.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -258,6 +273,16 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/add_branch/add_child_post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/add_branch/register_child_post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/bulletin/delete_post.php">
           <value>
             <PaintGroupHighlightMap />
@@ -283,12 +308,27 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/reply/modify_register.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/bulletin/reply/modify_reply.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/reply/register_child_reply.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/bulletin/reply/register_reply.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/search_result.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -399,6 +439,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/menu_list.html">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/js/reply.js">
           <value>
             <PaintGroupHighlightMap />
           </value>

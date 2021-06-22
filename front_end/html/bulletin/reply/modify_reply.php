@@ -1,24 +1,12 @@
-<?php ?>
-<script>
-    $(document).ready(function(){
-        $(".dat_edit_bt").click(function(){
-            /* dat_edit_bt클래스 클릭시 동작(댓글 수정) */
-            var obj = $(this).closest(".dap_lo").find(".dat_edit");
-            obj.dialog({
-                modal:true,
-                width:650,
-                height:200,
-                title:"댓글 수정"});
-        });
+<?php
+include $_SERVER['DOCUMENT_ROOT']."/back_end/PHP/connect_db.php";
+$rno = $_POST['rno'];//댓글번호
 
-        $(".dat_delete_bt").click(function(){
-            /* dat_delete_bt클래스 클릭시 동작(댓글 삭제) */
-            var obj = $(this).closest(".dap_lo").find(".dat_delete");
-            obj.dialog({
-                modal:true,
-                width:400,
-                title:"댓글 삭제확인"});
-        });
+$bno = $_POST['bno']; //게시글 번호
 
-    });
+
+$sql3 = mq("UPDATE php_real_project.reply SET reply_content='".$_POST['reply_content']."' WHERE reply_no = '".$rno."'"); ?>
+
+<script type="text/javascript">alert('수정되었습니다.');
+    location.replace("http://192.168.56.1/front_end/html/bulletin/view-post.php?idx=<?php echo $bno; ?>");
 </script>

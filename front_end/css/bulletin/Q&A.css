@@ -46,6 +46,13 @@ body {
     /*align-items: center;*/
 }
 
+#search_box {
+    margin-top: 10px;
+    float: right;
+}
+
+.search_input {}
+
 .QnA-main-title {
     margin-top: 30px;
     padding: 15px;
@@ -59,6 +66,7 @@ body {
 
 .QnA-main-title button {
     float: right;
+    margin-left: 10px;
     margin-right: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -70,9 +78,11 @@ body {
 }
 
 .QnA-table-body a {
+    float: left;
     text-decoration: none;
     color: black;
 }
+
 
 .pagination {
     justify-content: center;

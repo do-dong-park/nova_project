@@ -6,7 +6,12 @@ include $_SERVER['DOCUMENT_ROOT']."/back_end/PHP/connect_db.php";
 $bno = $_POST['bno'];
 $title = $_POST['title'];
 $content = $_POST['content'];
-$date = date('Y-m-d');
+
+if(isset($_POST['lock_post'])) {
+    $lock_post = 1;
+} else {
+    $lock_post = 0;
+}
 ?>
     <script>
         var index = "<?php echo $bno; ?>";
@@ -14,7 +19,7 @@ $date = date('Y-m-d');
 
 <?php
 if($title && $content){
-    $sql = mq("update php_real_project.board_info set title='".$title."',content='".$content."',UpdateDate=now() where board_no='".$bno."'");
+    $sql = mq("update php_real_project.board_info set title='".$title."',content='".$content."',UpdateDate=now(), use_secret='".$lock_post."' where board_no='".$bno."'");
     echo "<script>
     alert('글 수정이 완료되었습니다.');
     location.href='http://192.168.56.1/front_end/html/bulletin/view-post.php?idx='+index;</script>";

@@ -59,12 +59,12 @@ body {
     margin-bottom: 20px;
 }
 
-.left_btn button {
-    float: left;
+.left_btn {
     margin-right: 10px;
+    float: left;
 }
 
-.right_btn button {
+.right_btn {
     float: right;
     margin-left: 10px;
 }

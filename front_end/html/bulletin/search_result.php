@@ -23,75 +23,36 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
 <section class="QnA-section">
 
-    <div class="QnA-main-title">
-        <h1 class="title">FAQ</h1>
-    </div>
+    <?php
 
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    FAQ #1
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                 data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>FAQ #1</strong>
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    FAQ #2
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                 data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>FAQ #2</strong>
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    FAQ #3
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                 data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>FAQ #3</strong>
-                </div>
-            </div>
-        </div>
+    /* 검색 변수 */
+    $catagory = $_GET['catgo'];
+    $search_con = $_GET['search'];
+    ?>
+    <?php if($catagory=='title'){
+        $catname = '제목';
+    } else if($catagory=='name'){
+        $catname = '작성자';
+    } else if($catagory=='content'){
+        $catname = '내용';
+    } ?>
+
 
 
         <div class="QnA-main-title">
-            <h1 class="title">Q&A</h1>
-            <button class="add-post btn btn-outline-secondary btn-sm"
-                    onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'">글 작성
-            </button>
+            <h3 class="title"><?php echo $catname; ?>:<?php echo $search_con; ?>    검색결과</h3>
             <!--        검색구역-->
             <div id="search_box">
-
                 <form class="search_box" action="http://192.168.56.1/front_end/html/bulletin/search_result.php" method="get">
                     <select name="catgo">
                         <option value="title">제목</option>
-                        <option value="nickname">글쓴이</option>
+                        <option value="name">글쓴이</option>
                         <option value="content">내용</option>
                     </select>
                     <input class="search_input" type="text" name="search" size="40" required="required" /> <input class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
                 </form>
             </div>
             <!--        검색구역 끝-->
-
-
         </div>
 
 
@@ -128,7 +89,8 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <?php
             // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
             //            $sql = mq("select * from php_real_project.board_info where category=0 order by board_no desc limit 0,10");
-            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 order by bi.group_no desc, group_depth asc,  group_seq DESC limit 0,10");
+            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 and  $catagory like '%$search_con%' order by bi.group_no desc, group_depth asc,  group_seq DESC limit 0,10");
+//            $sql = mq("select * from php_real_project.board_info where $catagory like '%$search_con%' order by board_no desc");
 
             while ($board = $sql->fetch_array()) {
 
@@ -178,19 +140,19 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                     <td>
                         <!--                        포스트가 잠겨있는지 진위 여부 판단-->
                         <?php
-                            if($board['use_secret']==1) {
-                                if ($rep_count>0) { ?>
-                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);"><i class="fas fa-lock"></i>  <?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?>  <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
-                                 <?php
-                                } else { ?>
-                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);"><i class="fas fa-lock"></i>  <?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?>  </a>
+                        if($board['use_secret']==1) {
+                            if ($rep_count>0) { ?>
+                                <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);"><i class="fas fa-lock"></i>  <?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?>  <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
                                 <?php
-                                }?>
+                            } else { ?>
+                                <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);"><i class="fas fa-lock"></i>  <?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?>  </a>
+                                <?php
+                            }?>
 
-                            <?php } else {
-                                if ($rep_count>0) { ?>
-                        <a href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?> <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
-                        <?php } else { ?> <a href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?></a> <?php } } ?>
+                        <?php } else {
+                            if ($rep_count>0) { ?>
+                                <a href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?> <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
+                            <?php } else { ?> <a href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?></a> <?php } } ?>
                     </td>
                     <td><?php echo $board['nickname']; ?></td>
                     <td><?php echo $time; ?></td>

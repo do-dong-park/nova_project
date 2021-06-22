@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="../../common/nav_bar/my_nav_bar.css">
     <link rel="stylesheet" href="../../css/bulletin/view-post.css">
     <link rel="stylesheet" href="../../css/bulletin/reply/reply.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="../../common/nav_bar/my-nav-bar-bootstrap.js" defer></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../../js/reply.js"></script>
+
 </head>
 <body>
 
@@ -27,10 +31,8 @@ $bno = $_GET['idx']; /* bno함수에 idx값을 받아와 넣음*/
 $sql = mq("select bi.board_no, bi.title,bi.content, mi.nickname, bi.CreateDate, bi.reply_count from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.board_no='" . $bno . "' "); /* 받아온 idx값을 선택 */
 $board = $sql->fetch_array();
 
-$sql2 = mq("select *  from php_real_project.reply where board_no = '" . $bno . "' ");
-$rep_count =  mysqli_num_rows($sql2);
-
-
+$sql2 = mq("select *  from php_real_project.reply where board_no = '". $bno."' order by reply_group_no asc, reply_group_depth asc,  reply_group_seq DESC ");
+$rep_count = mysqli_num_rows($sql2);
 ?>
 
 <section class="QnA-view-section">
@@ -54,9 +56,13 @@ $rep_count =  mysqli_num_rows($sql2);
             <button class="right_btn list-post btn btn-sm btn-outline-secondary"
                     onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/Q&A.php'">목록
             </button>
-            <button class="right_btn previous-post btn btn-sm btn-outline-secondary" onclick="location.href = '#'">이전 글
+
+            <button class="right_btn previous-post btn btn-sm btn-outline-secondary" onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/view-post.php?idx=37'">
+                이전 글
             </button>
-            <button class="right_btn next-post btn btn-sm btn-outline-secondary" onclick="location.href = '#'">다음 글
+            <button class="right_btn next-post btn btn-sm btn-outline-secondary" onclick="location.href = '#'">
+                <?php mq("SELECT board_no FROM php_real_project.board_info BI WHERE board_no > '".$bno."'  ORDER BY board_no LIMIT 1");?>
+                다음 글
             </button>
         </div>
     </div>
@@ -85,23 +91,42 @@ $rep_count =  mysqli_num_rows($sql2);
             <?php
             // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
 
+//            $sql2 = mq("select *  from php_real_project.reply where board_no = '" . $bno . "' ");
+
             while ($reply = $sql2->fetch_array()) {
 
-                //                오늘날짜와 비교하여, 게시판에 보일 시간 양식 선택
                 $rno = $reply['reply_no'];
                 $time = $reply['reply_createDate'];
+                $content = $reply['reply_content'];
+                $g_depth = $reply['reply_group_depth'];
+
+                if($g_depth>1) {
+                    $indent = "ㄴ";
+                } else {
+                    $indent = "";
+                }
                 ?>
 
-                <div class="reply_list">
+                <!--                    댓글 목록 및 수정 부분-->
+
+
+                <div class="reply_list" style="padding-left:<?php echo ($g_depth-1)*20; ?>px">
+
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="form-inline mb-2">
-                                <div><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
+                                <div><?php echo $indent; ?><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
                             </div>
                             <div class="dap_to comt_edit"><?php echo nl2br("$reply[reply_content]"); ?></div>
                             <input type="hidden" name="bno" value="<?php echo $bno; ?>">
-                            <div><?php echo $time; ?> <a href="#">답글쓰기</a></div>
+                            <div><?php echo $time; ?> </div>
                             <div class="reply_control">
+                                <a class="add_child_reply" href="#" onclick="return false">답글 쓰기</a>
+
+                                <form action="http://192.168.56.1/front_end/html/bulletin/reply/modify_reply.php"
+                                      method="POST">
+                                    <a class="modify_reply" href="#" onclick="return false">수정</a>
+                                </form>
 
                                 <form action="http://192.168.56.1/front_end/html/bulletin/reply/delete_reply.php"
                                       method="POST">
@@ -112,29 +137,54 @@ $rep_count =  mysqli_num_rows($sql2);
                             </div>
                         </li>
                     </ul>
+                    <!--                    < 댓글 수정 폼 dialog-->
+                    <div class="reply_modify_input">
+                        <form action="http://192.168.56.1/front_end/html/bulletin/reply/modify_reply.php"
+                              method="post">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="form-inline mb-2">
+                                        <div><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
+                                    </div>
+                                    <input type="hidden" name="rno" value="<?php echo $rno; ?>"/>
+                                    <input type="hidden" name="bno" value="<?php echo $bno; ?>">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              name="reply_content"
+                                              placeholder="내용을 입력해주세요."><?php echo $content; ?></textarea>
+                                    <input type="submit" class="btn btn-sm btn-outline-secondary mt-3" value="수정">
+                                    <input type="button" onclick="window.location.reload()"
+                                           class="btn btn-sm btn-outline-secondary mt-3" value="취소">
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+
+                    <!--                    대댓글 쓰기 -->
+                    <div class="reply_reply_input">
+                        <form action="http://192.168.56.1/front_end/html/bulletin/reply/register_child_reply.php"
+                              method="post">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="form-inline mb-2">
+
+                                        <div><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
+                                    </div>
+                                    <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
+                                    <input type="hidden" name="rno" value="<?php echo $rno; ?>"/>
+                                    <!--                                    group_no 댓글 그룹의 아이디값.-->
+                                    <input type="hidden" name="g_no" value="<?php echo $reply['reply_group_no']; ?>">
+                                    <input type="hidden" name="g_seq" value="<?php echo $reply['reply_group_seq']; ?>">
+                                    <input type="hidden" name="g_depth"
+                                           value="<?php echo $reply['reply_group_depth']; ?>">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              name="reply_reply_content"
+                                              placeholder="내용을 입력해주세요."></textarea>
+                                    <input type="submit" class="btn btn-sm btn-outline-secondary mt-3" value="등록">
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
                 </div>
-                <!-- 댓글 수정 폼 dialog -->
-
-
-                <!--                <div class="reply_input">-->
-                <!--                    <form action="http://192.168.56.1/front_end/html/bulletin/reply/register_reply.php" method="post">-->
-                <!--                        <input type="hidden" name="rno" value="--><?php //echo $reply['reply_no']; ?><!--"/>-->
-                <!--                        <input type="hidden" name="b_no" value="--><?php //echo $bno; ?><!--">-->
-                <!--                        <ul class="list-group list-group-flush">-->
-                <!--                            <li class="list-group-item">-->
-                <!--                                <div class="form-inline mb-2">-->
-                <!---->
-                <!--                                    <div><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>-->
-                <!--                                </div>-->
-                <!--                                <input type="hidden" name="bno" value="--><?php //echo $bno; ?><!--">-->
-                <!--                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"-->
-                <!--                                          name="reply_content"-->
-                <!--                                          placeholder="내용을 입력해주세요.">--><?php //echo $reply['reply_content']; ?><!--</textarea>-->
-                <!--                                <input type="submit" class="btn btn-sm btn-outline-secondary mt-3" value="수정">-->
-                <!--                            </li>-->
-                <!--                        </ul>-->
-                <!--                    </form>-->
-                <!--                </div>-->
 
 
                 <?php
@@ -142,7 +192,7 @@ $rep_count =  mysqli_num_rows($sql2);
             ?>
 
 
-            <!--            댓글 입력부분.-->
+            <!--                        댓글 입력부분.-->
             <div class="reply_input">
                 <form action="http://192.168.56.1/front_end/html/bulletin/reply/register_reply.php" method="post">
                     <ul class="list-group list-group-flush">
@@ -171,9 +221,12 @@ $rep_count =  mysqli_num_rows($sql2);
         <button class="modify-post btn btn-outline-secondary"
                 onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'">글쓰기
         </button>
-        <button class="delete-post btn btn-outline-secondary"
-                onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'">답글
-        </button>
+
+
+        <form action="http://192.168.56.1/front_end/html/bulletin/add_branch/add_child_post.php" method="POST">
+            <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
+            <input type="submit" class="btn btn-outline-secondary" value="답글쓰기">
+        </form>
 
     </div>
 
@@ -181,4 +234,6 @@ $rep_count =  mysqli_num_rows($sql2);
 </section>
 
 </body>
+
+
 </html>

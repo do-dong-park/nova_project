@@ -6,3 +6,4 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/1059f71d3d.js" crossorigin="anonymous"></script>
 <script src="/front_end/common/My_Global_Function.js" crossorigin="anonymous"></script>
+
