@@ -57,11 +57,26 @@ $rep_count = mysqli_num_rows($sql2);
                     onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/Q&A.php'">목록
             </button>
 
-            <button class="right_btn previous-post btn btn-sm btn-outline-secondary" onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/view-post.php?idx=37'">
+<!--이전글 다음글-->
+            <?php $next=mq("SELECT board_no FROM php_real_project.board_info BI WHERE board_no > '".$bno."'  ORDER BY board_no LIMIT 1");
+            $next = $next->fetch_array();
+            $next_no=$next['board_no'];
+
+            $prev=mq("SELECT board_no FROM php_real_project.board_info BI WHERE board_no < '".$bno."'  ORDER BY board_no DESC LIMIT 1");
+            $prev = $prev->fetch_array();
+            $prev_no=$prev['board_no'];
+
+            if(!$bno) {
+                echo "<script>
+    alert('글이 존재하지 않습니다.');
+    history.back();</script>";
+            }?>
+
+            <button class="right_btn previous-post btn btn-sm btn-outline-secondary" onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/view-post.php?idx=<?php echo $prev_no; ?>'">
                 이전 글
             </button>
-            <button class="right_btn next-post btn btn-sm btn-outline-secondary" onclick="location.href = '#'">
-                <?php mq("SELECT board_no FROM php_real_project.board_info BI WHERE board_no > '".$bno."'  ORDER BY board_no LIMIT 1");?>
+            <button class="right_btn next-post btn btn-sm btn-outline-secondary" onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/view-post.php?idx=<?php echo $next_no; ?>'">
+
                 다음 글
             </button>
         </div>

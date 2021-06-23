@@ -128,7 +128,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <?php
             // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
             //            $sql = mq("select * from php_real_project.board_info where category=0 order by board_no desc limit 0,10");
-            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 order by bi.group_no desc, group_depth asc,  group_seq DESC limit 0,10");
+            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 order by bi.group_no desc, group_depth asc,  group_seq asc limit 0,10");
 
             while ($board = $sql->fetch_array()) {
 
@@ -180,10 +180,10 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                         <?php
                             if($board['use_secret']==1) {
                                 if ($rep_count>0) { ?>
-                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);"><i class="fas fa-lock"></i>  <?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?>  <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
+                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);">  <?php echo $depth; ?><?php echo $indent; ?>    <i class="fas fa-lock"></i>  <?php echo $board['title']; ?>    <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
                                  <?php
                                 } else { ?>
-                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);"><i class="fas fa-lock"></i>  <?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?>  </a>
+                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);">  <?php echo $depth; ?><?php echo $indent; ?>    <i class="fas fa-lock"></i>  <?php echo $board['title']; ?></a>
                                 <?php
                                 }?>
 
