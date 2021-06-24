@@ -61,6 +61,11 @@ if ($_POST["login_id"] == "" || $_POST["login_pw"] == "") {
 while ($row = mysqli_fetch_assoc($result)) {
 
     if ($row['id'] == $_POST["login_id"] && $row['pw'] == $_POST["login_pw"]) {
+        session_start();
+        $_SESSION['user_id'] = $_POST["login_id"];
+        $_SESSION['user_pw'] = $_POST["login_pw"];
+        $_SESSION['user_name'] = $row_info['nickname'];
+
         echo '<script> alert("로그인에 성공하였습니다."); var login_info = {id: login_id, nickname: login_nickname, logined: "true"}; post_to_url("http://192.168.56.1/front_end/html/cafe/main_page.php",login_info); </script>';
     }
 }

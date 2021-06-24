@@ -27,12 +27,14 @@
         </script>
 
         <?php
-        if ($_POST["logined"]) {
-            $nickname = $_POST['nickname'];
-//            a 링크 태그에 post 넣기
+        session_start();
+
+        if(isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
+            $user_name = $_SESSION['user_name'];
             echo '
                     <div class="logined_profile">
-                        <div class="helloUser">' . $_POST['nickname'] . '님 환영합니다.</div>
+                        <div class="helloUser">' .$user_name. '님 환영합니다.</div>
                         <div class="outAndUpdate">
                      
                             <a href="javascript:void(0);" onclick="post_to_url(url,show_my_profile);">내 정보</a> |
@@ -54,7 +56,7 @@
 
 <script>
     //-함수의 입력값에 배열을 넣어서 배열에 post로 보낼 값(key : value)을 담는다.
-    //함수 예시) post_to_url("/sports_shop/web_page/additempage.php", {'edit': 1,'id':<?=$id?>})
+    //함수 예시) post_to_url("/sports_shop/web_page/additempage.php", {'edit': 1,'id'})
     function post_to_url(path, params, method) {
         //1)get, post 설정
         method = method || "post";

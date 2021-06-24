@@ -43,6 +43,13 @@ dl, ol, ul {
     color: var(--text-color);
 }
 
+.logined_profile {
+    padding: 35px 18px 10px 18px;
+    text-align: center;
+    font-size: 15px;
+    line-height: normal;
+}
+
 /*로고 박스 내 아이콘의 색깔 지정*/
 .my-navbar_logo i {
     color: var(--accent-color);

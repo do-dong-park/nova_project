@@ -27,7 +27,8 @@ mysqli_select_db($conn, 'php-real-project');
 
 //post로 받은 id을 조건으로 table로부터, 해당 열을 추출.
 
-$id = $_POST['id'];
+session_start();
+$id = $_SESSION['user_id'];
 
 $find_my_info = mysqli_query($conn, "SELECT * FROM php_real_project.member_info WHERE id = '".$id."' ");
 
