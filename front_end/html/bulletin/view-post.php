@@ -1,4 +1,5 @@
-<?php include $_SERVER['DOCUMENT_ROOT'] . "/back_end/PHP/connect_db.php"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/back_end/PHP/connect_db.php";
+session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,10 +29,11 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
 <?php
 $bno = $_GET['idx']; /* bno함수에 idx값을 받아와 넣음*/
-$sql = mq("select bi.board_no, bi.title,bi.content, mi.nickname, bi.CreateDate, bi.reply_count from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.board_no='" . $bno . "' "); /* 받아온 idx값을 선택 */
+//이 글에 대한 정보를 DB로부터, 가져옴.
+$sql = mq("select bi.board_no, bi.title,bi.content, mi.nickname,mi.id, bi.CreateDate, bi.reply_count from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.board_no='" . $bno . "' and mi.member_no = bi.writer_code "); /* 받아온 idx값을 선택 */
 $board = $sql->fetch_array();
 
-$sql2 = mq("select *  from php_real_project.reply where board_no = '". $bno."' order by reply_group_no asc, reply_group_depth asc,  reply_group_seq DESC ");
+$sql2 = mq("select *  from php_real_project.reply join member_info mi on mi.member_no = reply.comment_writer  where board_no = '". $bno."' order by reply_group_no asc, reply_group_depth asc,  reply_group_seq DESC ");
 $rep_count = mysqli_num_rows($sql2);
 ?>
 
@@ -40,17 +42,27 @@ $rep_count = mysqli_num_rows($sql2);
     <!--    글 제목 위에 있는 버튼들-->
     <div class="control_post">
 
-        <div class="left_btn">
-            <form action="http://192.168.56.1/front_end/html/bulletin/modify_post.php" method="post">
-                <input type="hidden" name="bno" value="<?php echo $bno; ?>">
-                <input type="submit" class="modify-post btn btn-sm btn-outline-secondary" value="수정">
-            </form>
+<!--        내가! 관리자거나, 작성자라면, 글을 편집할 수 있는 권한을 갖습니다.-->
+        <?php
+//        닉네임은 변경이 가능 하기 때문에, 아이디로 게시글의 권한을 파악한다.
+        if ( $_SESSION['user_id'] === $board['id'] || $_SESSION['user_id'] === 'admin') { ?>
 
-            <form action="http://192.168.56.1/front_end/html/bulletin/delete_post.php" method="post">
-                <input type="hidden" name="bno" value="<?php echo $bno; ?>">
-                <input type="submit" class="modify-post btn btn-sm btn-outline-secondary" value="삭제">
-            </form>
-        </div>
+            <!--        내가 쓴 글이거나 관리자라면, 수정 삭제가 가능해야 함.-->
+            <div class="left_btn">
+                <form action="http://192.168.56.1/front_end/html/bulletin/modify_post.php" method="post">
+                    <input type="hidden" name="bno" value="<?php echo $bno; ?>">
+                    <input type="submit" class="modify-post btn btn-sm btn-outline-secondary" value="수정">
+                </form>
+
+                <form action="http://192.168.56.1/front_end/html/bulletin/delete_post.php" method="post">
+                    <input type="hidden" name="bno" value="<?php echo $bno; ?>">
+                    <input type="submit" class="modify-post btn btn-sm btn-outline-secondary" value="삭제">
+                </form>
+            </div>
+
+        <?php } ?>
+
+
 
         <div class="right_btn">
             <button class="right_btn list-post btn btn-sm btn-outline-secondary"
@@ -102,6 +114,46 @@ $rep_count = mysqli_num_rows($sql2);
                 <i class="fa fa-comment fa"></i> 댓글
             </div>
 
+            <!--                        댓글 입력부분.-->
+            <div class="reply_input">
+                <form action="http://192.168.56.1/front_end/html/bulletin/reply/register_reply.php" method="post">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+
+<!--댓글 작성할 때 내 정보 부분.-->
+                                <?php if(isset($_SESSION['user_id'])) {
+//                                    작성자와 관리자만 댓글을 달 수 있습니다.
+                                    if($_SESSION['user_name'] === 'admin') { ?>
+                                        <div class="form-inline mb-2">
+                                            <div><i class="fa fa-user-circle-o fa-2x"></i><b><?php echo $_SESSION['user_name']; ?></b></div>
+                                            <input type="hidden" name="bno" value="<?php echo $bno; ?>">
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                      name="reply_content"
+                                                      placeholder="내용을 입력해주세요."></textarea>
+                                            <input type="submit" class="btn btn-sm btn-outline-secondary mt-3" value="등록">
+                                        </div>
+                                    <?php } else { ?>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                  name="reply_content"
+                                                  placeholder="관리자만 댓글 작성이 가능합니다."  disabled></textarea>
+                                    <?php }?>
+
+                                <?php } else { ?>
+
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              name="reply_content"
+                                              placeholder="로그인 이후에 댓글 작성이 가능합니다."  disabled></textarea>
+
+
+                                <?php } ?>
+
+
+
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
             <!--            댓글 목록-->
             <?php
             // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
@@ -110,6 +162,8 @@ $rep_count = mysqli_num_rows($sql2);
 
             while ($reply = $sql2->fetch_array()) {
 
+                $commenter_nickname = $reply['nickname'];
+                $commenter_id = $reply['id'];
                 $rno = $reply['reply_no'];
                 $time = $reply['reply_createDate'];
                 $content = $reply['reply_content'];
@@ -130,25 +184,35 @@ $rep_count = mysqli_num_rows($sql2);
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="form-inline mb-2">
-                                <div><?php echo $indent; ?><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
+                                <div><?php echo $indent; ?><i class="fa fa-user-circle-o fa-2x"></i><b><?php echo $commenter_nickname; ?></b></div>
                             </div>
                             <div class="dap_to comt_edit"><?php echo nl2br("$reply[reply_content]"); ?></div>
                             <input type="hidden" name="bno" value="<?php echo $bno; ?>">
                             <div><?php echo $time; ?> </div>
                             <div class="reply_control">
-                                <a class="add_child_reply" href="#" onclick="return false">답글 쓰기</a>
+                                <?php if(isset($_SESSION['user_id'])) { ?>
+                                    <a class="add_child_reply" href="#" onclick="return false">답글 쓰기</a>
+                                <?php } ?>
+                                <!--        내가! 관리자거나, 댓글 작성자라면, 댓글을 편집할 수 있는 권한을 갖습니다.-->
+                                <?php
+                                //        닉네임은 변경이 가능 하기 때문에, 아이디로 게시글의 권한을 파악한다.
+                                if ( $_SESSION['user_id'] === 'admin' || $_SESSION['user_id'] === $commenter_id) { ?>
 
-                                <form action="http://192.168.56.1/front_end/html/bulletin/reply/modify_reply.php"
-                                      method="POST">
-                                    <a class="modify_reply" href="#" onclick="return false">수정</a>
-                                </form>
+                                    <form action="http://192.168.56.1/front_end/html/bulletin/reply/modify_reply.php"
+                                          method="POST">
+                                        <a class="modify_reply" href="#" onclick="return false">수정</a>
+                                    </form>
 
-                                <form action="http://192.168.56.1/front_end/html/bulletin/reply/delete_reply.php"
-                                      method="POST">
-                                    <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
-                                    <input type="hidden" name="rno" value="<?php echo $rno; ?>"/>
-                                    <a href="#" onclick="this.parentNode.submit()">삭제</a>
-                                </form>
+                                    <form action="http://192.168.56.1/front_end/html/bulletin/reply/delete_reply.php"
+                                          method="POST">
+                                        <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
+                                        <input type="hidden" name="rno" value="<?php echo $rno; ?>"/>
+                                        <a href="#" onclick="this.parentNode.submit()">삭제</a>
+                                    </form>
+
+                                <?php } ?>
+
+
                             </div>
                         </li>
                     </ul>
@@ -159,7 +223,7 @@ $rep_count = mysqli_num_rows($sql2);
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <div class="form-inline mb-2">
-                                        <div><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
+                                        <div><i class="fa fa-user-circle-o fa-2x"></i><b><?php echo $commenter_nickname; ?></b></div>
                                     </div>
                                     <input type="hidden" name="rno" value="<?php echo $rno; ?>"/>
                                     <input type="hidden" name="bno" value="<?php echo $bno; ?>">
@@ -182,7 +246,7 @@ $rep_count = mysqli_num_rows($sql2);
                                 <li class="list-group-item">
                                     <div class="form-inline mb-2">
 
-                                        <div><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
+                                        <div><i class="fa fa-user-circle-o fa-2x"></i><b><?php echo $_SESSION['user_name']; ?></b></div>
                                     </div>
                                     <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
                                     <input type="hidden" name="rno" value="<?php echo $rno; ?>"/>
@@ -207,26 +271,6 @@ $rep_count = mysqli_num_rows($sql2);
             ?>
 
 
-            <!--                        댓글 입력부분.-->
-            <div class="reply_input">
-                <form action="http://192.168.56.1/front_end/html/bulletin/reply/register_reply.php" method="post">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="form-inline mb-2">
-
-                                <div><i class="fa fa-user-circle-o fa-2x"></i><b> test 1</b></div>
-                            </div>
-                            <input type="hidden" name="bno" value="<?php echo $bno; ?>">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                      name="reply_content"
-                                      placeholder="내용을 입력해주세요."></textarea>
-                            <input type="submit" class="btn btn-sm btn-outline-secondary mt-3" value="등록">
-                        </li>
-                    </ul>
-                </form>
-            </div>
-
-
         </div>
 
     </div>
@@ -234,13 +278,24 @@ $rep_count = mysqli_num_rows($sql2);
     <!--글 아래 조그만한 게시판 섹션-->
     <div class="board_bottom_btn">
         <button class="modify-post btn btn-outline-secondary"
-                onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'">글쓰기
+            <?php
+            if(isset($_SESSION['user_id'])) { ?>
+                onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'"
+            <?php } else { ?>
+                onclick = "alert('로그인 후 글을 작성할 수 있습니다.'); return false;"
+            <?php } ?> >글쓰기
         </button>
 
 
         <form action="http://192.168.56.1/front_end/html/bulletin/add_branch/add_child_post.php" method="POST">
             <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
-            <input type="submit" class="btn btn-outline-secondary" value="답글쓰기">
+            <?php
+            if(isset($_SESSION['user_id'])) { ?>
+                <input type="submit" class="btn btn-outline-secondary" value="답글쓰기">
+            <?php } else { ?>
+                <input type="button" class="btn btn-outline-secondary" onclick = "alert('로그인 후 글을 작성할 수 있습니다.'); return false;" value="답글쓰기">
+            <?php } ?>
+
         </form>
 
     </div>

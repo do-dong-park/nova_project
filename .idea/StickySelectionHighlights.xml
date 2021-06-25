@@ -388,6 +388,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/delete_member.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/find_account.php">
           <value>
             <PaintGroupHighlightMap />

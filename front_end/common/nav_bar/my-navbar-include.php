@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+function Decrypt($str, $secret_key = 'secret key', $secret_iv = 'secret iv')
+
+{
+
+    $key = hash('sha256', $secret_key);
+
+    $iv = substr(hash('sha256', $secret_iv), 0, 32);
+
+    return openssl_decrypt(
+
+        base64_decode($str), "AES-256-CBC", $key, 0, $iv
+
+    );
+
+}
+
+$encrypted = $_COOKIE['user_id'];
+
+$secret_key = "123456789";
+
+$secret_iv = "#@$%^&*()_+=-";
+
+$decrypted = Decrypt($encrypted, $secret_key, $secret_iv);
+
+?>
+
 <nav class="my-navbar">
     <ul class="my-navbar_menu">
         <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
@@ -22,8 +51,13 @@
         </script>
 
         <?php
-        session_start();
 
+//        자동로그인 상태면, 쿠키에서 복호화시킨 값을 아이디로 갖는다.
+        if(isset($_COOKIE['user_id'])) {
+           $_SESSION['user_id'] =  $decrypted;
+        }
+
+//자동로그인이 아닌 상황이라면, 세션에 있는 아이디를 사용한다.
         if(isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
             $user_name = $_SESSION['user_name'];
@@ -33,7 +67,7 @@
                         <div class="outAndUpdate">
                      
                             <a href="http://192.168.56.1/front_end/html/login/check-my-profile.php">내 정보</a> |
-                            <a href="http://192.168.56.1/front_end/html/cafe/main_page.php">로그아웃</a>  
+                            <a href="http://192.168.56.1/front_end/html/login/logout.php">로그아웃</a>  
                         </div>
                     </div>';
         } else {

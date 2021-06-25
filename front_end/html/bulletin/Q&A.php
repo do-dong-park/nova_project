@@ -75,7 +75,13 @@ require_once "../../common/nav_bar/my-navbar-include.php"
         <div class="QnA-main-title">
             <h1 class="title">Q&A</h1>
             <button class="add-post btn btn-outline-secondary btn-sm"
-                    onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'">글 작성
+                    <?php
+                    if(isset($_SESSION['user_id'])) { ?>
+                        onclick="location.href = 'http://192.168.56.1/front_end/html/bulletin/write_post.php'"
+                    <?php } else { ?>
+                    onclick = "alert('로그인 후 글을 작성할 수 있습니다.'); return false;"
+                    <?php } ?>
+                    >글 작성
             </button>
             <!--        검색구역-->
             <div id="search_box">
@@ -128,7 +134,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <?php
             // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
             //            $sql = mq("select * from php_real_project.board_info where category=0 order by board_no desc limit 0,10");
-            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 order by bi.group_no desc, group_depth asc,  group_seq asc limit 0,10");
+            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 order by bi.group_no desc, group_depth asc,  group_seq desc limit 0,10");
 
             while ($board = $sql->fetch_array()) {
 
@@ -180,10 +186,10 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                         <?php
                             if($board['use_secret']==1) {
                                 if ($rep_count>0) { ?>
-                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);">  <?php echo $depth; ?><?php echo $indent; ?>    <i class="fas fa-lock"></i>  <?php echo $board['title']; ?>    <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
+                                    <a href="#" onclick="location.replace('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>');">  <?php echo $depth; ?><?php echo $indent; ?>    <i class="fas fa-lock"></i>  <?php echo $board['title']; ?>    <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
                                  <?php
                                 } else { ?>
-                                    <a href="#" onclick="window.open('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>','비밀글 조회','width=400,height=150',false);">  <?php echo $depth; ?><?php echo $indent; ?>    <i class="fas fa-lock"></i>  <?php echo $board['title']; ?></a>
+                                    <a href="#" onclick="location.replace('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>');">  <?php echo $depth; ?><?php echo $indent; ?>    <i class="fas fa-lock"></i>  <?php echo $board['title']; ?></a>
                                 <?php
                                 }?>
 

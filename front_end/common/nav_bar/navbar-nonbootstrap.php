@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <nav class="navbar">
     <ul class="navbar_menu">
         <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
@@ -20,14 +21,19 @@
 
 
         <script>
-            var my_nickname = "<?php echo $_POST['nickname']; ?>";
-            var my_id = "<?php echo $_POST['id']; ?>";
+            var my_nickname = "<?php echo $_SESSION['user_name']; ?>";
+            var my_id = "<?php echo $_SESSION['user_id']; ?>";
             var url = "http://192.168.56.1/front_end/html/login/check-my-profile.php";
             var show_my_profile = {id:my_id, nickname: my_nickname};
         </script>
 
         <?php
-        session_start();
+
+//        세션 아이디는..암호화된 쿠키값을 갖는데...! -> 내 정보 보기에서 유저 아이디 값을 복호화시킴.
+        if(isset($_COOKIE['user_id'])) {
+            $_SESSION['user_id'] = $_COOKIE['user_id'];
+        }
+
 
         if(isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
@@ -38,7 +44,7 @@
                         <div class="outAndUpdate">
                      
                             <a href="javascript:void(0);" onclick="post_to_url(url,show_my_profile);">내 정보</a> |
-                            <a href="http://192.168.56.1/front_end/html/cafe/main_page.php">로그아웃</a>  
+                            <a href="http://192.168.56.1/front_end/html/login/logout.php">로그아웃</a>  
                         </div>
                     </div>';
         } else {

@@ -32,6 +32,27 @@
     }</script>;
 
 <?php
+
+
+function Encrypt($str, $secret_key = 'secret key', $secret_iv = 'secret iv')
+
+{
+
+    $key = hash('sha256', $secret_key);
+
+    $iv = substr(hash('sha256', $secret_iv), 0, 32);
+
+    return str_replace("=", "", base64_encode(
+
+            openssl_encrypt($str, "AES-256-CBC", $key, 0, $iv))
+
+    );
+
+}
+
+?>
+
+<?php
 ///////MYSQL 연결///////
 $conn = mysqli_connect("127.0.0.1", "root", 'tpwnd2315!');
 mysqli_select_db($conn, 'php_real_project');
@@ -40,6 +61,7 @@ $result = mysqli_query($conn, 'SELECT * FROM php_real_project.member_info');
 
 $id = $_POST["login_id"];
 $pw = $_POST["login_pw"];
+$auto_login = $_POST['auto_login'];
 
 $get_info = mysqli_query($conn, "SELECT * FROM php_real_project.member_info WHERE id = '".$id."' ");
 
@@ -66,6 +88,21 @@ while ($row = mysqli_fetch_assoc($result)) {
         $_SESSION['user_pw'] = $_POST["login_pw"];
         $_SESSION['user_name'] = $row_info['nickname'];
 
+
+//        복호화 가능한 암호화
+        $str =  $_SESSION['user_id'];
+
+        $secret_key = "123456789";
+
+        $secret_iv = "#@$%^&*()_+=-";
+
+        $encrypted = Encrypt($str, $secret_key, $secret_iv);
+
+        if(isset($auto_login)){
+//            쿠키에 자동로그인 설정
+            setcookie("user_id",$encrypted,(time()+3600*24*30),"/");
+        }
+
         echo '<script> alert("로그인에 성공하였습니다."); var login_info = {id: login_id, nickname: login_nickname, logined: "true"}; post_to_url("http://192.168.56.1/front_end/html/cafe/main_page.php",login_info); </script>';
     }
 }
@@ -75,6 +112,10 @@ if ($row['id'] != $_POST["login_id"] || $row['pw'] != $_POST["login_pw"]) {
 
 }
 ?>
+
+
+
+
 
 
 

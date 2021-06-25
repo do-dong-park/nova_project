@@ -1,6 +1,6 @@
 .reply_list {
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     border-bottom: 1px lightgrey solid;
 }
 .reply_list a{

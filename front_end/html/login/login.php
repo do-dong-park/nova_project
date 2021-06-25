@@ -40,7 +40,7 @@
         <!--    로그인 옵션 부분 시작-->
         <div class="login_option">
             <div class="auto_option">
-                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio">
+                <input class="form-check-input" type="checkbox" name="auto_login" id="auto_option_radio" value="1">
                 <label class="form-check-label" for="auto_option_radio">
                     자동 로그인
                 </label>

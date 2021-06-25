@@ -50,7 +50,7 @@ $row_my_info = mysqli_fetch_assoc($find_my_info);
     <div class="check-my-profile-title">
         <h1 class="title">내 회원정보 <span>확인</span></h1>
         <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick = post_to_url(url,show_my_profile)>회원 정보 수정</button>
-        <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm">회원 탈퇴</button>
+        <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick ='location.href = "http://192.168.56.1/front_end/html/login/delete_member.php"' >회원 탈퇴</button>
     </div>
 
     <!--    class : table은 테두리 만들어주는 친구 / striped 줄마다 색 다르게 / table-hover - 마우스 위에 있을 때 반응! -->
