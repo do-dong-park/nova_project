@@ -89,7 +89,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <?php
             // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
             //            $sql = mq("select * from php_real_project.board_info where category=0 order by board_no desc limit 0,10");
-            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 and  $catagory like '%$search_con%' order by bi.group_no desc, group_depth asc,  group_seq DESC limit 0,10");
+            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.disLike, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 and  $catagory like '%$search_con%' order by bi.group_no desc, group_depth asc,  group_seq DESC limit 0,10");
 //            $sql = mq("select * from php_real_project.board_info where $catagory like '%$search_con%' order by board_no desc");
 
             while ($board = $sql->fetch_array()) {

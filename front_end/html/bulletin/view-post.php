@@ -30,7 +30,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 <?php
 $bno = $_GET['idx']; /* bno함수에 idx값을 받아와 넣음*/
 //이 글에 대한 정보를 DB로부터, 가져옴.
-$sql = mq("select bi.board_no, bi.title,bi.content, mi.nickname,mi.id, bi.CreateDate, bi.reply_count from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.board_no='" . $bno . "' and mi.member_no = bi.writer_code "); /* 받아온 idx값을 선택 */
+$sql = mq("select bi.board_no, bi.title,bi.content, mi.nickname,mi.id, bi.CreateDate, bi.disLike from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.board_no='" . $bno . "' and mi.member_no = bi.writer_code "); /* 받아온 idx값을 선택 */
 $board = $sql->fetch_array();
 
 $sql2 = mq("select *  from php_real_project.reply join member_info mi on mi.member_no = reply.comment_writer  where board_no = '". $bno."' order by reply_group_no asc, reply_group_depth asc,  reply_group_seq DESC ");

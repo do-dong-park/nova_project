@@ -134,7 +134,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
             <?php
             // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
             //            $sql = mq("select * from php_real_project.board_info where category=0 order by board_no desc limit 0,10");
-            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.reply_count, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 order by bi.group_no desc, group_depth asc,  group_seq desc limit 0,10");
+            $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.pw, bi.CreateDate, bi.disLike, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category=0 order by bi.group_no desc, group_depth asc,  group_seq desc limit 0,10");
 
             while ($board = $sql->fetch_array()) {
 
@@ -143,6 +143,9 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
                 $sql2 = mq("select * from php_real_project.reply where board_no='".$board['board_no']."'"); //reply테이블에서 con_num이 board의 idx와 같은 것을 선택
                 $rep_count = mysqli_num_rows($sql2);
+
+//                시간 설정 포맷
+                date_default_timezone_set("Asia/Seoul");
 
 //                오늘날짜와 비교하여, 게시판에 보일 시간 양식 선택
                 $time = DateTime::createFromFormat('Y-m-d H:i:s', $board['CreateDate']);

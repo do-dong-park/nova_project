@@ -30,7 +30,7 @@ if($title && $content){
 
     $sql3 = mq("select * from php_real_project.board_info where group_no='".$group_no."'"); //reply테이블에서 con_num이 board의 idx와 같은 것을 선택
     $group_count = mysqli_num_rows($sql3);
-    $sql = mq("insert into php_real_project.board_info(board_category, title, writer_code, reply_count, content, file_no, CreateDate, UpdateDate, hit, category, group_no, group_seq, group_depth, use_secret) values(0,'".$title."','".$mno."',0,'".$content."',null,now(),now(),0,0,'".$group_no."','".$bno."','".$group_depth."'+1,'".$lock_post."')");
+    $sql = mq("insert into php_real_project.board_info(board_category, title, writer_code, disLike, content, file_no, CreateDate, UpdateDate, hit, category, group_no, group_seq, group_depth, use_secret) values(0,'".$title."','".$mno."',0,'".$content."',null,now(),now(),0,0,'".$group_no."','".$bno."','".$group_depth."'+1,'".$lock_post."')");
 //    $sql2 = mq("UPDATE php_real_project.board_info SET group_no=LAST_INSERT_ID() WHERE board_no=LAST_INSERT_ID()");
 
 

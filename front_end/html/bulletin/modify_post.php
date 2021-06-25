@@ -22,8 +22,7 @@ $board = $sql->fetch_array();
     <link rel="stylesheet" href="../../common/nav_bar/my_nav_bar.css">
     <link rel="stylesheet" href="../../css/bulletin/modify_post.css">
     <script src="../../common/nav_bar/my-nav-bar-bootstrap.js" defer></script>
-    <script src="../../library/ckeditor5/src/ckeditor.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 
