@@ -123,7 +123,7 @@ $rep_count = mysqli_num_rows($sql2);
 <!--댓글 작성할 때 내 정보 부분.-->
                                 <?php if(isset($_SESSION['user_id'])) {
 //                                    작성자와 관리자만 댓글을 달 수 있습니다.
-                                    if($_SESSION['user_name'] === 'admin') { ?>
+                                    if($_SESSION['user_name'] === 'admin' || $_SESSION['user_name'] === $board['nickname']) { ?>
                                         <div class="form-inline mb-2">
                                             <div><i class="fa fa-user-circle-o fa-2x"></i><b><?php echo $_SESSION['user_name']; ?></b></div>
                                             <input type="hidden" name="bno" value="<?php echo $bno; ?>">
@@ -135,7 +135,8 @@ $rep_count = mysqli_num_rows($sql2);
                                     <?php } else { ?>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                                                   name="reply_content"
-                                                  placeholder="관리자만 댓글 작성이 가능합니다."  disabled></textarea>
+                                                  placeholder="작성자와 관리자만 댓글 작성이 가능합니다."  disabled></textarea>
+                                        <input type="submit" class="btn btn-sm btn-outline-secondary mt-3 disabled" value="등록" >
                                     <?php }?>
 
                                 <?php } else { ?>
@@ -143,6 +144,7 @@ $rep_count = mysqli_num_rows($sql2);
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                                               name="reply_content"
                                               placeholder="로그인 이후에 댓글 작성이 가능합니다."  disabled></textarea>
+                                    <input type="submit" class="btn btn-sm btn-outline-secondary mt-3 disabled" value="등록" disabled>
 
 
                                 <?php } ?>
@@ -287,16 +289,16 @@ $rep_count = mysqli_num_rows($sql2);
         </button>
 
 
-        <form action="http://192.168.56.1/front_end/html/bulletin/add_branch/add_child_post.php" method="POST">
-            <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
-            <?php
-            if(isset($_SESSION['user_id'])) { ?>
-                <input type="submit" class="btn btn-outline-secondary" value="답글쓰기">
-            <?php } else { ?>
-                <input type="button" class="btn btn-outline-secondary" onclick = "alert('로그인 후 글을 작성할 수 있습니다.'); return false;" value="답글쓰기">
-            <?php } ?>
-
-        </form>
+<!--        <form action="http://192.168.56.1/front_end/html/bulletin/add_branch/add_child_post.php" method="POST">-->
+<!--            <input type="hidden" name="bno" value="--><?php //echo $bno; ?><!--"/>-->
+<!--            --><?php
+//            if(isset($_SESSION['user_id'])) { ?>
+<!--                <input type="submit" class="btn btn-outline-secondary" value="답글쓰기">-->
+<!--            --><?php //} else { ?>
+<!--                <input type="button" class="btn btn-outline-secondary" onclick = "alert('로그인 후 글을 작성할 수 있습니다.'); return false;" value="답글쓰기">-->
+<!--            --><?php //} ?>
+<!---->
+<!--        </form>-->
 
     </div>
 
