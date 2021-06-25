@@ -7,5 +7,6 @@
     <orderEntry type="library" name="jquery-latest" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="ckeditor" level="application" />
+    <orderEntry type="library" name="ckfinder" level="application" />
   </component>
 </module>

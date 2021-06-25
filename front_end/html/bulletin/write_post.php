@@ -12,23 +12,9 @@
     <link rel="stylesheet" href="../../common/nav_bar/my_nav_bar.css">
     <link rel="stylesheet" href="../../css/bulletin/write_post.css">
     <script src="../../common/nav_bar/my-nav-bar-bootstrap.js" defer></script>
-<!--    <script src="../../library/ckeditor5/src/ckeditor.js"></script>-->
+<!--        <script src="../../library/ckeditor5/src/ckeditor.js"></script>-->
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-    <script src="/src/ckfinder/ckfinder.js"></script>
-    <script type="text/javascript">
-
-        ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                ckfinder: {
-                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-                },
-                toolbar: [ 'ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
-            } )
-            .catch( function( error ) {
-                console.error( error );
-            } );
-
-    </script>
+<!--    <script src="http://192.168.56.1/src/ckfinder/ckfinder.js"></script>-->
 </head>
 <body>
 
@@ -65,16 +51,21 @@ require_once "../../common/nav_bar/my-navbar-include.php"
         </div>
 
 
-
     </form>
 
 
 </section>
 
 <script>
-    // 3. CKEditor5를 생성할 textarea 지정
+
     ClassicEditor
-        .create(document.querySelector('#editor'))
+    .create(document.querySelector('#editor'), {
+        ckfinder: {
+            uploadUrl: 'http://192.168.56.1/src/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+            options :  {
+                resourceType :  'Images'
+            } },
+    })
         .catch(error => {
             console.error(error);
         });
