@@ -12,7 +12,7 @@
 
     <div class="navbar_logo" id="goBack">
         <i class="fas fa-chevron-left"></i>
-        <a href="">이전 페이지로</a>
+        <a href="#" onclick="history.back()">이전 페이지로</a>
     </div>
 
     <div class="navbar_logo" id="goMain">

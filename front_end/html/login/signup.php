@@ -82,9 +82,20 @@
 
         </div>
 
+        <script>
+            function selectAll(selectAll)  {
+                const checkboxes
+                    = document.querySelectorAll('input[type="checkbox"]');
+
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = selectAll.checked
+                })
+            }
+        </script>
+
         <div class="signup_option">
             <div class="auto_option">
-                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="auto_option_radio1">
+                <input class="form-check-input" type="checkbox" name="flexRadioDefault" value="select_all" onclick="selectAll(this)" id="auto_option_radio1">
                 <label class="form-check-label" for="auto_option_radio1">
                     약관 전체 동의
                 </label>

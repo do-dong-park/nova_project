@@ -243,6 +243,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/css/login/check_my_post.css">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/css/login/login.css">
           <value>
             <PaintGroupHighlightMap />
@@ -309,6 +314,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/bulletin/modify_post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/module/QnA_bulletin.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/bulletin/module/community_bulletin.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -383,6 +398,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/check-my-post.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/check-my-profile.php">
           <value>
             <PaintGroupHighlightMap />
@@ -439,6 +459,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/signup.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/signup_agreement.php">
           <value>
             <PaintGroupHighlightMap />
           </value>

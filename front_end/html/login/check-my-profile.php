@@ -49,6 +49,7 @@ $row_my_info = mysqli_fetch_assoc($find_my_info);
 
     <div class="check-my-profile-title">
         <h1 class="title">내 회원정보 <span>확인</span></h1>
+        <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick = "location.href = 'http://192.168.56.1/front_end/html/login/check-my-post.php?search_area=question&search_type=post'">내가 쓴 글 보기</button>
         <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick = post_to_url(url,show_my_profile)>회원 정보 수정</button>
         <button class="modify-my-profile-btn btn btn-outline-secondary btn-sm" onclick ='location.href = "http://192.168.56.1/front_end/html/login/delete_member.php"' >회원 탈퇴</button>
     </div>

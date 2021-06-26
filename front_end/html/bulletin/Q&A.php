@@ -83,10 +83,12 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                     <?php } ?>
                     >글 작성
             </button>
+
             <!--        검색구역-->
             <div id="search_box">
 
                 <form class="search_box" action="http://192.168.56.1/front_end/html/bulletin/search_result.php" method="get">
+                    <input type="hidden" name="board_type" value="0">
                     <select name="catgo">
                         <option value="title">제목</option>
                         <option value="nickname">글쓴이</option>
