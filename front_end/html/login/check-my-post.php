@@ -15,11 +15,15 @@ session_start(); ?>
     <link rel="stylesheet" href="../../common/nav_bar/my_nav_bar.css">
     <link rel="stylesheet" href="../../css/login/check_my_post.css">
     <script src="../../common/nav_bar/my-nav-bar-bootstrap.js" defer></script>
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 
 <?php
-require_once "../../common/nav_bar/my-navbar-include.php"
+require_once "../../common/nav_bar/my-navbar-include.php";
+
+$search_area = $_GET['search_area'];
+$search_type = $_GET['search_type']
 ?>
 
 
@@ -27,16 +31,16 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
 <section class="check-my-post-section">
     <h1 class="title">내 글 보기</h1>
-    <form class="search_box" action="http://192.168.56.1/front_end/html/login/check-my-post.php" method="get">
+    <form class="search_box" name="" action="http://192.168.56.1/front_end/html/login/check-my-post.php" method="get">
         <select name="search_area">
             <!--            <option value="total_post">전체보기</option>-->
-            <option value="question">문의</option>
-            <option value="community">자유 게시판</option>
+            <option value="question" <?php if($search_area==='question'){echo ' selected="selected"';}?> >문의</option>
+            <option value="community"<?php if($search_area==='community'){echo ' selected="selected"';}?>>자유 게시판</option>
         </select>
 
         <select name="search_type">
-            <option value="post">게시글</option>
-            <option value="reply">댓글</option>
+            <option value="post" <?php if($search_type==='post'){echo ' selected="selected"';}?>>게시글</option>
+            <option value="reply"<?php if($search_type==='reply'){echo ' selected="selected"';}?>>댓글</option>
             <!--            <option value="content">댓글 단 글</option>-->
         </select>
         <input class="btn btn-outline-secondary btn-sm" type="submit" value="검색">
@@ -62,9 +66,11 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 //
             if ($_GET['search_area'] == "question") {
                 $board_type = 0;
+                $last_col_index = '답변 상태';
 
             } else if ($_GET['search_area'] == "community") {
                 $board_type = 1;
+                $last_col_index = '조회수';
 
             } ?>
 
@@ -92,13 +98,13 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">작성일</th>
-                    <th scope="col">답변 상태</th>
+                    <th scope="col"><?php echo $last_col_index; ?></th>
                 </tr>
                 </thead>
 
                 <?php
                 //내가 쓴 문의 글 보기!
-                $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.id, bi.CreateDate, bi.group_no, bi.group_seq, bi.group_depth, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category='" . $board_type . "' and mi.id ='" . $id . "' order by bi.group_no desc, group_depth asc,  group_seq desc limit 0,10");
+                $sql = mq("select bi.board_no, bi.title, mi.nickname, mi.id, bi.CreateDate, bi.group_no, bi.group_seq, bi.group_depth, bi.hit, bi.use_secret from php_real_project.board_info as bi join php_real_project.member_info as mi where bi.writer_code = mi.member_no and bi.board_category='" . $board_type . "' and mi.id ='" . $id . "' order by bi.group_no desc, group_depth asc,  group_seq desc limit 0,10");
 
                 while ($board = $sql->fetch_array()) {
 
@@ -110,6 +116,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
 //                시간 설정 포맷
                     date_default_timezone_set("Asia/Seoul");
+
 
 //                오늘날짜와 비교하여, 게시판에 보일 시간 양식 선택
                     $time = DateTime::createFromFormat('Y-m-d H:i:s', $board['CreateDate']);
@@ -133,11 +140,18 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                         $is_answered = "미답변";
                     }
 
+//                    조회수 표현
+                    $hit = $board['hit'];
+
+                    $bno_for_category = $board['board_no'];
+
 //                들여쓰기 계산
                     $depth = str_repeat('&nbsp&nbsp&nbsp&nbsp', $board['group_depth'] - 1);
 
                     if ($board['group_depth'] > 1) {
                         $indent = "ㄴ";
+                        $bno_for_category = "답글";
+
                     } else {
                         $indent = "";
                     }
@@ -147,9 +161,9 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
                     <tbody class="QnA-table-body">
                     <tr>
-                        <th scope="row"><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
+                        <th scope="row"><input class="form-check-input" type="checkbox" name="chk[]"  id="checkboxNoLabel" value=<?php echo $board['board_no']; ?>
                                                aria-label="..."></th>
-                        <td><?php echo $board['board_no']; ?></td>
+                        <td><?php echo $bno_for_category; ?></td>
                         <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
                         <td>
                             <!--                        포스트가 잠겨있는지 진위 여부 판단-->
@@ -157,27 +171,27 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                             if ($board['use_secret'] == 1) {
                                 if ($rep_count > 0) { ?>
                                     <a href="#"
-                                       onclick="location.replace('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>');">  <?php echo $depth; ?><?php echo $indent; ?>
+                                       onclick="location.replace('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>');">
                                         <i class="fas fa-lock"></i> <?php echo $board['title']; ?> <span
                                                 class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
                                     <?php
                                 } else { ?>
                                     <a href="#"
-                                       onclick="location.replace('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>');">  <?php echo $depth; ?><?php echo $indent; ?>
+                                       onclick="location.replace('/front_end/html/bulletin/unlock_post.php?idx=<?php echo $board['board_no']; ?>');">
                                         <i class="fas fa-lock"></i> <?php echo $board['title']; ?></a>
                                     <?php
                                 } ?>
 
                             <?php } else {
                                 if ($rep_count > 0) { ?>
-                                    <a href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?>
+                                    <a href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $board['title']; ?>
                                         <span class="re_ct"> [<?php echo $rep_count; ?>]</span></a>
                                 <?php } else { ?> <a
-                                        href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $depth; ?><?php echo $indent; ?><?php echo $board['title']; ?></a> <?php }
+                                        href="/front_end/html/bulletin/view-post.php?idx=<?php echo $board['board_no']; ?>"><?php echo $board['title']; ?></a> <?php }
                             } ?>
                         </td>
                         <td><?php echo $time; ?></td>
-                        <td><?php echo $is_answered; ?></td>
+                        <td><?php if($search_area==='question'){echo $is_answered;} else {echo $hit;} ?></td>
                     </tr>
                     </tbody>
                 <?php } ?>
@@ -275,7 +289,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                     <tbody class="QnA-table-body">
                     <tr>
                         <!--                체크박스와 나머지 들어갈 공간-->
-                        <th scope="row"><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
+                        <th scope="row"><input class="form-check-input" type="checkbox" id="checkboxNoLabel" name="chk[]" value=<?php echo $reply['reply_no']; ?>
                                                aria-label="..."></th>
                         <!--            colspan은 다음칸 n 칸이 비어있을 때 숫자 n으로 값을 비우는 역할을 수행한다. -->
                         </td>
@@ -288,7 +302,8 @@ require_once "../../common/nav_bar/my-navbar-include.php"
                 <?php } ?>
             </table>
         <?php } ?>
-        <input class="select_delete btn btn-outline-secondary btn-sm" type="submit" value="삭제">
+        <input type="hidden" name="search_type" value=<?php echo $_GET['search_type']; ?>>
+        <input class="select_delete btn btn-outline-secondary btn-sm" type="button"  value="삭제" onclick="historyDel()" >
     </form>
 </section>
 
@@ -304,11 +319,48 @@ require_once "../../common/nav_bar/my-navbar-include.php"
         })
     }
 
+
+
     //    다중 선택 삭제 구현
     //    form 태그 안에 table> td 존재
     //    td 내 체크박스에 체크가 되어 있으면, 그 줄의 board_no 혹은 reply_no를 배열에 추가
     //    삭제 버튼을 누르면, 삭제 php로 이동하여, 변수를 post로 받음.
     //    for문으로 돌리면서, 삭제 쿼리 날려줌.
     //    정상적으로 끝나면, alert 삭제가 완료되었습니다 or 체크된 글이 없으면, 삭제할 게시물을 선택해주세요 alert문구 출력
+</script>
+
+
+<script>
+    function historyDel() {
+        var form = document.myPost;
+        var boo = false;                // 삭제할 항목을 체크했는지 여부 구분자
+
+
+
+        if (document.getElementsByName("chk[]").length > 0) {
+            for (var i=0;i<document.getElementsByName("chk[]").length;i++) {
+                if (document.getElementsByName("chk[]")[i].checked === true) {
+                    boo = true;
+                    break;
+                }
+            }
+        }
+
+        if (boo) {
+            form.action = "delete_my_post.php";
+            form.submit();
+        } else {
+            alert("개별 삭제하실 항목을 적어도 하나는 체크해 주십시오.");
+        }
+    }
+</script>
+
+<script>
+
+    if($( 'td:contains("답변 완료")' )) {
+        $( 'td:contains("답변 완료")' ).css('color','red');
+        $( 'td:contains("답변 완료")' ).css('font-weight','bold');
+    }
+
 </script>
 </html>

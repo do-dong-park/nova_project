@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../css/bulletin/Community.css">
     <link rel="stylesheet" href="/front_end/common/footer/common_footer.css">
     <script src="../../common/nav_bar/my-nav-bar-bootstrap.js" defer></script>
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 
@@ -103,5 +104,15 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 require_once "../../common/footer/common_footer.php"
 ?>
 
+<script>
+
+    if($( 'td:contains("답변 완료")' )) {
+        $( 'td:contains("답변 완료")' ).css('color','red');
+        $( 'td:contains("답변 완료")' ).css('font-weight','bold');
+    }
+
+</script>
+
 </body>
 </html>
+

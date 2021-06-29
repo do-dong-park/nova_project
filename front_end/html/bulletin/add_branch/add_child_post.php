@@ -16,7 +16,7 @@ $board = $sql->fetch_array();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>QnA 글쓰기</title>
+    <title>답글 쓰기</title>
     <?php
     require_once "../../../common/bootstrap&icon&font.php"
     ?>
@@ -37,7 +37,7 @@ require_once "../../../common/nav_bar/my-navbar-include.php"
 
     <form action="http://192.168.56.1/front_end/html/bulletin/add_branch/register_child_post.php" method="post">
         <div class="QnA-modify-main-title">
-            <h3 class="title">문의 작성</h3>
+            <h3 class="title">답글 작성</h3>
             <input type="hidden" name="bno" value="<?php echo $bno; ?>">
             <input type="hidden" name="g_no" value="<?php echo $board['group_no']; ?>">
             <input type="hidden" name="g_seq" value="<?php echo $board['group_seq']; ?>">

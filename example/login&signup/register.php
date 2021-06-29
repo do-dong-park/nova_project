@@ -1,30 +1,64 @@
-<?php
-
-/////데이터베이스 연결.////
-$conn = mysqli_connect("127.0.0.1","root",'Zxzx3709!');
-mysqli_select_db($conn ,'alldata');
-
-
-////데이터 베이스 저장 ///////
-$sql = "INSERT INTO user (name,pass,id,phone,birth,address) VALUES(   
-
-
-/////post로 넘겨받은 데이터를 저장.
-'".$_POST['name']."', 
-'".$_POST['pass']."'  , 
-'".$_POST['id']."'  , 
-'".$_POST['phone']."' , 
-'".$_POST['birth']."'  , 
-'".$_POST['address']."'  
-
-)";
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/example/login&signup/index.css">
+    <title>Document</title>
+</head>
+<body>
 
 
-$result = mysqli_query($conn,$sql);
-echo '<script> alert("회원가입을 하였습니다."); location.href="index.php"; </script>';
+<li>
+    <div class="thumb"><img src="http://paikdabang.com/wp-content/uploads/2018/05/더블에스프레소-2-450x588.png" alt=""></div>
+    <p class="menu_tit">더블에스프레소</p>
+    <div class="hover" style="display: block; opacity: 0.5;">
+        <button class="close" type="button"></button>
+        <h3 class="font-bl">더블에스프레소</h3>
+        <div class="menu_tit2 color-1 ">double espresso </div>
+        <p class="txt">콜롬비아 원두를 베이스로 블랜딩한 커피의 본연의 향을 느낄 수 있는 에스프레소</p>
+        <div class="ingredient_table_box">
+            <p class="menu_ingredient_basis">※ 1회 제공량 기준 : 60ml</p>
+            <ul class="ingredient_table">
+                <li>
+                    <div>카페인 (mg)</div>
+                    <div>237.0</div>
+                </li>
+                <li>
+                    <div>칼로리 (kcal)</div>
+                    <div>22</div>
+                </li>
+                <li>
+                    <div>나트륨 (mg)</div>
+                    <div>0</div>
+                </li>
+                <li>
+                    <div>당류 (g)</div>
+                    <div>0</div>
+                </li>
+                <li>
+                    <div>포화지방 (g)</div>
+                    <div>0</div>
+                </li>
+                <li>
+                    <div>단백질(g)</div>
+                    <div>1</div>
+                </li>
+            </ul>
+        </div>
+        <p class="msg">(매장 상황에 따라 판매하지 않을 수 있습니다.)</p>
+    </div>
 
 
-?>
+
+</li>
 
 
-<?php
+
+
+
+</body>
+</html>
+

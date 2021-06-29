@@ -46,6 +46,24 @@ a.nav-link {
 .card-title {
     color: #111111;
     text-align: center;
+    text-decoration: none;
+}
+
+.recent_menu{
+    position: absolute;
+    top: 320px;
+    left: 130px;
+    border: lightgrey 1px solid;
+    padding: 10px;
+}
+
+.recent_menu a {
+    color: black;
+    text-decoration: none   ;
+}
+
+a{
+    color: #f0f4f5;
 }
 
 

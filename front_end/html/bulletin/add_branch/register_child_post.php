@@ -30,14 +30,14 @@ if($title && $content){
 
     $sql3 = mq("select * from php_real_project.board_info where group_no='".$group_no."'"); //reply테이블에서 con_num이 board의 idx와 같은 것을 선택
     $group_count = mysqli_num_rows($sql3);
-    $sql = mq("insert into php_real_project.board_info(board_category, title, writer_code, disLike, content, file_no, CreateDate, UpdateDate, hit, category, group_no, group_seq, group_depth, use_secret) values(0,'".$title."','".$mno."',0,'".$content."',null,now(),now(),0,0,'".$group_no."','".$bno."','".$group_depth."'+1,'".$lock_post."')");
+    $sql = mq("insert into php_real_project.board_info(board_category, title, writer_code, disLike, content, file_no, CreateDate, UpdateDate, hit, category, group_no, group_seq, group_depth, use_secret) values(1,'".$title."','".$mno."',0,'".$content."',null,now(),now(),0,0,'".$group_no."','".$bno."','".$group_depth."'+1,'".$lock_post."')");
 //    $sql2 = mq("UPDATE php_real_project.board_info SET group_no=LAST_INSERT_ID() WHERE board_no=LAST_INSERT_ID()");
 
 
 //    데이터가 추가될 때 group_no의 값은 기본키 값과 동일하다
     echo "<script>
     alert('글쓰기 완료되었습니다.');
-    location.href='/front_end/html/bulletin/Q&A.php';</script>";
+    location.href='/front_end/html/bulletin/Community.php';</script>";
 }else{
     echo "<script>
     alert('글쓰기에 실패했습니다.');

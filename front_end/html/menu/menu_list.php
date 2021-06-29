@@ -1,3 +1,4 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/back_end/PHP/connect_db.php"; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +20,8 @@
 <body>
 
 <?php
-require_once "../../common/nav_bar/my-navbar-include.php"
+require_once "../../common/nav_bar/my-navbar-include.php";
+$menu_classify = $_GET['menu_category'];
 ?>
 
 <section class="menu_list">
@@ -35,80 +37,126 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">전체 보기</a>
+                    <button class="nav-link <?php if(!isset($menu_classify)) { echo 'active';} ?>" id="전체보기-tab" data-bs-toggle="tab" data-bs-target="#전체보기" type="button" role="tab" aria-controls="전체보기" aria-selected="true" onclick="location.href='/front_end/html/menu/menu_list.php'">전체보기</button>
+<!--                    <a class="nav-link active" aria-current="page" href="/front_end/html/menu/menu_list.php">전체 보기</a>-->
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">커피</a>
+<!--                    <a class="nav-link"  href="/front_end/html/menu/menu_list.php?menu_category=1">커피</a>-->
+                    <button class="nav-link <?php if($menu_classify==1) { echo 'active';} ?>" id="커피-tab" data-bs-toggle="tab" data-bs-target="#커피" type="button" role="tab" aria-controls="커피" aria-selected="false" onclick="location.href='/front_end/html/menu/menu_list.php?menu_category=1'" >커피</button>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">음료</a>
+<!--                    <a class="nav-link" href="/front_end/html/menu/menu_list.php?menu_category=2">차 / 음료</a>-->
+                    <button class="nav-link <?php if($menu_classify==2) { echo 'active';} ?>" id="차-tab" data-bs-toggle="tab" data-bs-target="#차" type="button" role="tab" aria-controls="차" aria-selected="false"  onclick="location.href='/front_end/html/menu/menu_list.php?menu_category=2'" >차 / 음료</button>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">푸드</a>
+                    <!--                    <a class="nav-link" href="/front_end/html/menu/menu_list.php?menu_category=2">차 / 음료</a>-->
+                    <button class="nav-link <?php if($menu_classify==3) { echo 'active';} ?>" id="차-tab" data-bs-toggle="tab" data-bs-target="#차" type="button" role="tab" aria-controls="차" aria-selected="false"  onclick="location.href='/front_end/html/menu/menu_list.php?menu_category=3'" >푸드</button>
                 </li>
+
             </ul>
 
         </div>
 
-        <script>
-            var beverage = "beverage";
-            var coffee = "coffee";
-            var food = "food";
-            var show_item_profile1 = {item_name: beverage};
-            var show_item_profile2 = {item_name: coffee};
-            var show_item_profile3 = {item_name: food};
-            var url = "http://192.168.56.1/front_end/html/menu/menu-item.php";
-        </script>
+        <?php
+
+        if (isset($_COOKIE['today_view'])) { ?>
+            <div class="recent_menu" >
+                <div>
+
+                    <div style="text-align: center;">
+                        최근본상품
+                        <?php
+                        //                쿠키 배열에 오늘 본 상품의 아이디들을 담는다.
+                        if (isset($_COOKIE['today_view'])) {
+                            $cookieArray = explode(",", $_COOKIE['today_view']);
+                            $cookieCount = sizeof($cookieArray);
+                            ?>
+                            <?php
+                        }
+                        ?>
+                        <br>
+                        <div style="text-align: center;">
+                            <div class="scrollbarauto">
+                                <?php
+                                if (isset($_COOKIE['today_view'])) {
+//                                    쿠키가 있으면, 가장 최근에 쌓인 쿠키부터 3개만 고른다.
+                                    for ($i = $cookieCount - 1; $i > $cookieCount -4; $i--) {
+                                        if ($cookieArray[$i] !== "") {
+                                            $sql = mq("select * from php_real_project.menu_info as mi join php_real_project.menu_img_info as mii where mi.menu_no = '".$cookieArray[$i]."' and mi.file_no = mii.file_no  ");
+                                            while ($recent_menu = $sql->fetch_array()) {
+                                                echo '
+                                            <a href="/front_end/html/menu/menu-item.php?menu_id=' . $recent_menu['menu_no'] . '" >
+                                                <img src="/' . $recent_menu['file_path'] . '" width="80" height="80" ><br>
+                                                <span>' . $recent_menu['menu_name_kr'] . '</span>
+                                                </a>
+                                        <br>';
+                                            }
+                                        }
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
 
 
         <div class="coffee-menu-item-list row row-cols-1 row-cols-md-5 g-4">
 
-            <div class="col">
-                <div class="card">
-                    <a href="javascript:void(0);" onclick="post_to_url(url,show_item_profile1,'get');">
-                        <img src="../../img/음료%20이미지%20샘플.png" class="card-img-top" alt="">
 
-                        <div class="card-body">
-                            <h5 class="card-title">음료 샘플1</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <?php
 
-            <div class="col">
-                <div class="card">
-                    <a href="javascript:void(0);" onclick="post_to_url(url,show_item_profile2,'get');">
-                        <img src="../../img/커피%20이미지%20샘플.png"
-                             class="card-img-top"
-                             alt="">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">커피 샘플1</h5>
+            if (isset($menu_classify)) {
+                $sql = mq("select mi.menu_no, mi.menu_category, mi.menu_name_kr, mi.ice_hot, mii.file_path  from php_real_project.menu_info as mi join php_real_project.menu_img_info as mii where mii.file_no = mi.file_no and mi.menu_category = '" . $menu_classify . "' ");
+
+            } else {
+                $sql = mq("select mi.menu_no, mi.menu_category, mi.menu_name_kr, mi.ice_hot, mii.file_path  from php_real_project.menu_info as mi join php_real_project.menu_img_info as mii where mii.file_no = mi.file_no ");
+
+            } ?>
+
+            <?php
+
+            // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
+            //            $sql = mq("select * from php_real_project.board_info where category=0 order by board_no desc limit 0,10");
+
+            while ($menu = $sql->fetch_array()) {
+                $menu_id = $menu['menu_no'];
+                $menu_category = $menu['menu_category'];
+                $menu_name = $menu['menu_name_kr'];
+                $menu_path = $menu['file_path'];
+
+
+                ?>
+                <div class="col">
+                    <div class="card">
+                        <a href="/front_end/html/menu/menu-item.php?menu_id=<?php echo $menu_id ?>">
+                            <img src='/<?php echo $menu_path; ?>' class="card-img-top" alt="">
+
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $menu_name; ?></h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="card">
-                    <a href="javascript:void(0);" onclick="post_to_url(url,show_item_profile3,'get');">
-                        <img src="../../img/음식%20사진/푸드%20이미지%20샘플.png"
-                             class="card-img-top"
-                             alt="">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">푸드 샘플1</h5>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
 
         </div>
     </div>
+
+
+
+
 </section>
 
 <?php
 require_once "../../common/footer/common_footer.php"
 ?>
-
 
 
 <!-- Optional JavaScript; choose one of the two! -->

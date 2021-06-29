@@ -21,6 +21,8 @@ if($post_type == 1) {
     $location = '/front_end/html/bulletin/Q&A.php';
 }
 
+echo $post_type;
+
 ?>
 
     <script> var location = <?=$location ?></script>

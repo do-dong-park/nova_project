@@ -1,47 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
+<form name="f" method="post">
 
-    <title>남자 옷가게</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <input type="checkbox" id="c1" name="chk[]" value="3">
+    <input type="checkbox" id="c2" name="chk[]" value="14">
+    <input type="checkbox" id="c3" name="chk[]" value="5">
+    <input type="checkbox" id="c4" name="chk[]" value="8">
 
-    <style>
-        .form-group{
-            margin-top: 60px;
+
+
+    <br>
+
+
+
+    <input type="button" value="삭제" onclick="historyDel()">
+</form>
+
+
+
+<script>
+    function historyDel() {
+        var form = document.f;
+        var boo = false;                // 삭제할 항목을 체크했는지 여부 구분자
+
+
+
+        if (document.getElementsByName("chk[]").length > 0) {
+            for (var i=0;i<document.getElementsByName("chk[]").length;i++) {
+                if (document.getElementsByName("chk[]")[i].checked == true) {
+                    boo = true;
+                    break;
+                }
+            }
         }
-    </style>
-
-</head>
-<body>
-
-<div class="companyname text-center">
-    <h1><a href="http://192.168.56.1/example/login&signup/index.php" style="color: #111111">Mans Shop</a></h1>
-</div>
 
 
-<div class="login-box">
-    <link rel="stylesheet" href="loginstyle.css">
-    <h2>로그인</h2>
-    <form class="form-horizontal" action ="logincheck.php" method ="post" >
-        <div class="textbox">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text"placeholder="ID" name="userid" >
-        </div>
 
-        <div class="textbox">
-            <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="password"placeholder="PW" name="userpw" >
-        </div>
-        <div>
-            <input class="loginbtn" type="submit" name="button" value="로그인">
-        </div>
-    </form>
-</div>
-
-</body>
-</html>
+        if (boo) {
+            form.action = "del_history.php";
+            form.submit();
+        } else {
+            alert("개별 삭제하실 항목을 적어도 하나는 체크해 주십시오.");
+        }
+    }
+</script>

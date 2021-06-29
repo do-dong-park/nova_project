@@ -18,6 +18,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="/GridCellEditorTextField">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="/dummy.sql">
           <value>
             <PaintGroupHighlightMap />
@@ -104,6 +109,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/example/image_edit/thumnailTest.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/example/login&amp;signup/del_history.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -424,6 +434,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/front_end/html/login/delete_member.php">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/front_end/html/login/delete_my_post.php">
           <value>
             <PaintGroupHighlightMap />
           </value>

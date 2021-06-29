@@ -1,3 +1,4 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . "/back_end/PHP/connect_db.php"; ?>
 <?php session_start(); ?>
 <nav class="navbar">
     <ul class="navbar_menu">
@@ -32,6 +33,10 @@
 //        세션 아이디는..암호화된 쿠키값을 갖는데...! -> 내 정보 보기에서 유저 아이디 값을 복호화시킴.
         if(isset($_COOKIE['user_id'])) {
             $_SESSION['user_id'] = $_COOKIE['user_id'];
+            $get_info = mq( "SELECT * FROM php_real_project.member_info WHERE id = '".$_SESSION['user_id']."' ");
+
+            $row_info = mysqli_fetch_assoc($get_info);
+            $user_name = $row_info['nickname'];
         }
 
 
