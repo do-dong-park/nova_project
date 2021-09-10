@@ -36,7 +36,9 @@ $board = $sql->fetch_array();
 $sql2 = mq("select *  from php_real_project.reply join member_info mi on mi.member_no = reply.comment_writer  where board_no = '". $bno."' order by reply_group_no asc, reply_group_depth asc,  reply_group_seq DESC ");
 $rep_count = mysqli_num_rows($sql2);
 
-$hit = mq("UPDATE php_real_project.board_info set hit=hit+1 where board_no = '".$bno."'")
+$hit = mq("UPDATE php_real_project.board_info set hit=hit+1 where board_no = '".$bno."'");
+
+$board_category = $board['board_category'];
 ?>
 
 <section class="QnA-view-section">
@@ -58,6 +60,7 @@ $hit = mq("UPDATE php_real_project.board_info set hit=hit+1 where board_no = '".
 
                 <form action="http://192.168.56.1/front_end/html/bulletin/delete_post.php" method="post">
                     <input type="hidden" name="bno" value="<?php echo $bno; ?>">
+                    <input type="hidden" name="bno" value="<?php echo $board_category; ?>"/>
                     <input type="submit" class="modify-post btn btn-sm btn-outline-secondary" value="삭제">
                 </form>
             </div>
@@ -70,7 +73,7 @@ $hit = mq("UPDATE php_real_project.board_info set hit=hit+1 where board_no = '".
 
 <!--이전글 다음글-->
             <?php
-            $board_category = $board['board_category'];
+
             if($board_category== 0) {
                 $gotoList = 'http://192.168.56.1/front_end/html/bulletin/Q&A.php';
             } else {
@@ -440,7 +443,8 @@ $hit = mq("UPDATE php_real_project.board_info set hit=hit+1 where board_no = '".
         <?php
         if($board_category == 1) { ?>
             <form action="http://192.168.56.1/front_end/html/bulletin/add_branch/add_child_post.php?community=1" method="POST">
-                <input type="hidden" name="bno" value="<?php echo $bno; ?>"/>
+
+                <input type="hidden" name="board_category" value="<?php echo $bno; ?>"/>
                 <?php
                 if(isset($_SESSION['user_id'])) { ?>
                     <input type="submit" class="btn btn-outline-secondary" value="답글쓰기">

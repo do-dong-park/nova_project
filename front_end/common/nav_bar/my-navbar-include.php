@@ -54,13 +54,21 @@ $decrypted = Decrypt($encrypted, $secret_key, $secret_iv);
 
 //        자동로그인 상태면, 쿠키에서 복호화시킨 값을 아이디로 갖는다.
         if(isset($_COOKIE['user_id'])) {
-           $_SESSION['user_id'] =  $decrypted;
+            $_SESSION['user_id'] =  $decrypted;
+            $nickname = $_SESSION['user_id'];
+            $get_info = mq( "SELECT nickname FROM php_real_project.member_info WHERE id = '".$_SESSION['user_id']."' ");
+
+            $row_info =  $get_info->fetch_array();
+            $user_name = $row_info['nickname'];
         }
 
 //자동로그인이 아닌 상황이라면, 세션에 있는 아이디를 사용한다.
         if(isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
-            $user_name = $_SESSION['user_name'];
+
+            if(!isset($_COOKIE['user_id'])) {
+                $user_name = $_SESSION['user_name'];
+            }
             echo '
                     <div class="logined_profile">
                         <div class="helloUser">' .$user_name. '님 환영합니다.</div>

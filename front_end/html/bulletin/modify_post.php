@@ -35,7 +35,7 @@ require_once "../../common/nav_bar/my-navbar-include.php"
 
     <form action="register_modified_post.php" method="post">
         <div class="QnA-modify-main-title">
-            <h3 class="title">문의 수정</h3>
+            <h3 class="title">글 수정</h3>
             <input type="hidden" name="bno" value="<?php echo $bno; ?>">
             <button class="register-post btn btn-outline-secondary btn-sm" type="submit">등록</button>
         </div>

@@ -1,5 +1,32 @@
 <?php include $_SERVER['DOCUMENT_ROOT'] . "/back_end/PHP/connect_db.php"; ?>
-<?php session_start(); ?>
+<?php
+session_start();
+
+function Decrypt($str, $secret_key = 'secret key', $secret_iv = 'secret iv')
+
+{
+
+    $key = hash('sha256', $secret_key);
+
+    $iv = substr(hash('sha256', $secret_iv), 0, 32);
+
+    return openssl_decrypt(
+
+        base64_decode($str), "AES-256-CBC", $key, 0, $iv
+
+    );
+
+}
+
+$encrypted = $_COOKIE['user_id'];
+
+$secret_key = "123456789";
+
+$secret_iv = "#@$%^&*()_+=-";
+
+$decrypted = Decrypt($encrypted, $secret_key, $secret_iv);
+
+?>
 <nav class="navbar">
     <ul class="navbar_menu">
         <li><a href="http://192.168.56.1/front_end/html/cafe/cafe_info.php">카페 정보</a></li>
@@ -32,20 +59,25 @@
 
 //        세션 아이디는..암호화된 쿠키값을 갖는데...! -> 내 정보 보기에서 유저 아이디 값을 복호화시킴.
         if(isset($_COOKIE['user_id'])) {
-            $_SESSION['user_id'] = $_COOKIE['user_id'];
-            $get_info = mq( "SELECT * FROM php_real_project.member_info WHERE id = '".$_SESSION['user_id']."' ");
+            $_SESSION['user_id'] =  $decrypted;
+            $nickname = $_SESSION['user_id'];
+            $get_info = mq( "SELECT nickname FROM php_real_project.member_info WHERE id = '".$_SESSION['user_id']."' ");
 
-            $row_info = mysqli_fetch_assoc($get_info);
+            $row_info =  $get_info->fetch_array();
             $user_name = $row_info['nickname'];
         }
 
 
         if(isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
-            $user_name = $_SESSION['user_name'];
+
+            if(!isset($_COOKIE['user_id'])) {
+                $user_name = $_SESSION['user_name'];
+            }
+
             echo '
                     <div class="logined_profile">
-                        <div class="helloUser">' .$user_name. '님 환영합니다.</div>
+                        <div class="helloUser">'.$user_name.'님 환영합니다.</div>
                         <div class="outAndUpdate">
                      
                             <a href="javascript:void(0);" onclick="post_to_url(url,show_my_profile);">내 정보</a> |
