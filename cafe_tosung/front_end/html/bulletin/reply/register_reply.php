@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/back_end/PHP/connect_db.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/back_end/PHP/connect_db.php";
 session_start();
 
 $bno = $_POST['bno'];
